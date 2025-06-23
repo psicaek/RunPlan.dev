@@ -1,0 +1,28 @@
+{
+  "name": "runplan.dev",
+  "version": "1.0.0",
+  "description": "Running Programm Generator ",
+  "main": "vite.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/psicaek/RunPlan.dev.git"
+  },
+  "author": "Ioannis Psychogyios",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/psicaek/RunPlan.dev/issues"
+  },
+  "homepage": "https://github.com/psicaek/RunPlan.dev#readme",
+  "dependencies": {
+    "vue": "^3.5.17",
+    "vue-router": "^4.5.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.4",
+    "vite": "^6.3.5"
+  }
+}
