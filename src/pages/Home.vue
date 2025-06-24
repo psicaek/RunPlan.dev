@@ -1,66 +1,66 @@
 <template>
-  <v-container class="pa-4" fluid>
-    <v-row>
-      <v-col cols="12" md="6" offset-md="3">
-        <v-card>
-          <v-card-title class="text-h5">Running Plan Generator</v-card-title>
-          <v-card-text>
-            <v-form @submit.prevent="generatePlan" ref="form">
-              <v-text-field
-                v-model="days"
-                label="Ημέρες ανά εβδομάδα"
-                type="number"
-                :rules="[value => (value >= 1 && value <= 7) || '1-7 days']"
-                required
-              ></v-text-field>
+  <v-app>
+   <v-main class="gradient-bg">
+       <v-container style="max-width: 1900px">
+  <v-row align="center" justify="center" class="mb-4">
+    <!-- Logo -->
+    <v-col cols="auto">
+      <v-img
+        src ="src/assets/mainLogo.svg"
+        alt="Run Plan Logo"
+        width="60"
+        class="mb-1"
+      ></v-img>
+    </v-col>
+    <v-col>
+      <!-- Title & Subtitle -->
+    <h1 class="text-h5 font-weight-bold mb-0">Run Plan Generator</h1>
+    
+    <p class="text-subtitle-2">Create your personalized running plan in minutes!</p>
+    </v-col>
+</v-row>
+</v-container>
+    <!-- Title & Subtitle -->
+    <v-col>
+    </v-col>
 
-              <v-text-field
-                v-model="goal"
-                label="Στόχος (χλμ/εβδομάδα)"
-                type="number"
-                :rules="[value => value > 0 || 'Positive number required']"
-                required
-              ></v-text-field>
-
-              <v-btn color="primary" type="submit">Δημιουργία Πλάνου</v-btn>
-            </v-form>
-          </v-card-text>
-        </v-card>
-
-        <v-card v-if="plan.length" class="mt-4">
-          <v-card-title>Πλάνο Προπόνησης</v-card-title>
-          <v-list>
-            <v-list-item v-for="(item, index) in plan" :key="index">
-              <v-list-item-content>
-                <v-list-item-title>Ημέρα {{ index + 1 }}: {{ item }} χλμ</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+<v-container class="text-center white--text">
+          <v-row>
+            <v-col cols="12" sm="6" offset-sm="3">
+              <p class="text-h6">Create your personalized running plan in minutes!</p>
+              <p class="text-subtitle-1">Answer a few questions and get a tailored plan to help you achieve your running goals.</p>
+            </v-col>
+          </v-row>
+</v-container>
+        <v-row class="text-center">
+          <v-col cols="12" sm="6" offset-sm="3">
+            <v-btn 
+              color="primary" 
+              class="mt-5"
+              @click="$router.push('/generator')"
+            >
+              Get Started
+            </v-btn>
+          </v-col>
+          </v-row>
+       
+ 
+      
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      days: 3,
-      goal: 15,
-      plan: [],
-    };
-  },
-  methods: {
-    generatePlan() {
-      const base = Math.floor(this.goal / this.days);
-      const remainder = this.goal % this.days;
-      this.plan = Array(this.days).fill(base);
 
-      for (let i = 0; i < remainder; i++) {
-        this.plan[i]++;
-      }
-    },
-  },
+
+export default {
+  name: 'HomePage',
 };
 </script>
+
+<style scoped>
+.gradient-bg {
+  background: linear-gradient(to bottom, #00b4db, #001f3f);
+  min-height: 100vh;
+}
+</style>
