@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../pages/Home.vue'
-import Generator from '../pages/Generator.vue'
 import About from '../pages/About.vue'
-import { fromJSON } from 'postcss'
+import AthletesProfile from '../pages/AthletesProfile.vue'
+import TrainingGoal from '../pages/TrainingGoal.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
-  { path: '/generate', name: 'Generate', component: Generator },
+  { path: '/athletsProfile', name: 'AthletsProfile', component: AthletesProfile  },
   { path: '/about', name: 'About', component: About },
+  { path: '/TrainingGoal', name: 'TrainingGoal', component: TrainingGoal  } // Redirect all unmatched routes to Home
 ]
 
 const router = createRouter({

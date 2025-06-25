@@ -37,7 +37,7 @@
             <v-btn 
               color="primary" 
               class="mt-5"
-              @click="$router.push('/generator')"
+              @click="$router.push('/athletsProfile')"
             >
               Get Started
             </v-btn>
