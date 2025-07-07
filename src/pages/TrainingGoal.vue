@@ -43,7 +43,7 @@
               </div>
               <v-select
                 ref="Goal Race Distance"
-                v-model="raceDistance"
+                v-model="goal.raceDistance"
                 :items="raceDistanceOptions"
                 :rules="[
                   () => !!raceDistanceOptions || 'This field is required',
@@ -60,7 +60,7 @@
                 Goal Time
               </div>
               <v-text-field
-                v-model="goalTime"
+                v-model="goal.goalTime"
                 label="Goal Time"
                 variant="outlined"
                 class="mb-4"
@@ -86,7 +86,7 @@
                 Target Race Date
               </div>
               <v-text-field
-                v-model="targetDate"
+                v-model="goal.targetDate"
                 variant="outlined"
                 class="mb-4"
                 label="Select Target Date (YYYY-MM-DD)"
@@ -114,7 +114,7 @@
               </div>
               <v-select
                 label="Training Days Per Week "
-                v-model="trainingDays"
+                v-model="goal.trainingDays"
                 :items="trainingDaysOptions"
                 :rules="[(v) => !!v || 'This field is required']"
                 variant="outlined"
@@ -127,7 +127,7 @@
                 >Back
               </v-btn>
               <v-btn color="primary" class="mt-5" @click="$router.push()">
-                Genarate Plan
+                Review Inputs
               </v-btn>
             </v-col>
           </v-row>
@@ -136,46 +136,34 @@
     </v-main>
   </v-app>
 </template>
-<script>
-export default {
-  name: "TrainingGoal",
+<script setup lang="ts">
+import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
+import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
+const store = useRunnerProfileStore();
+const { goal } = storeToRefs(store);
+const router = useRouter();
 
-  data: () => ({
-    experienceLevel: null,
-    experienceLevelOptions: ["Beginner", "Intermediate", "Advanced"],
-    raceDistance: null,
-    raceDistanceOptions: ["5K", "10K", "Half Marathon", "Marathon"],
-    trainingDays: null,
-    trainingDaysOptions: [
-      "1 day",
-      "2 days",
-      "3 days",
-      "4 days",
-      "5 days",
-      "6 days",
-      "7 days",
-    ],
-    minutes: null,
-    targetDate: "",
-    goalTime: "",
-  }),
-  computed: {
-    formattedGoalTime() {
-      if (!this.goalTime) return "";
-      const totalMinutes = parseInt(this.goalTime);
-      const hours = Math.floor(totalMinutes / 60);
-      const minutes = totalMinutes % 60;
+const raceDistanceOptions = ["5K", "10K", "Half Marathon", "Marathon"];
+const trainingDaysOptions = [
+  "1 day",
+  "2 days",
+  "3 days",
+  "4 days",
+  "5 days",
+  "6 days",
+  "7 days",
+];
 
-      if (hours === 0) {
-        return `${minutes} minute${minutes !== 1 ? "s" : ""}`;
-      } else if (minutes === 0) {
-        return `${hours} hour${hours !== 1 ? "s" : ""}`;
-      } else {
-        return `${hours} hour${hours !== 1 ? "s" : ""} ${minutes} minute${minutes !== 1 ? "s" : ""}`;
-      }
-    },
-  },
-};
+function goNext() {
+  if (store.isGoalComplete()) {
+    router.push({ name: "Review" });
+    console.log("next page ");
+  } else {
+    alert("Please complete all fields.");
+    console.log("something is wrong ");
+  }
+}
 </script>
 
 <style scoped>

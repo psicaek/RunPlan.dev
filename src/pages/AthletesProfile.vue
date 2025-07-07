@@ -43,7 +43,7 @@
               </div>
               <v-select
                 ref="Experience Level"
-                v-model="experienceLevel"
+                v-model="profile.experienceLevel"
                 :items="experienceLevelOptions"
                 :rules="[(v) => !!v || 'This field is required']"
                 class="mb-4"
@@ -56,6 +56,7 @@
                 Weekly Running Distance
               </div>
               <v-text-field
+                v-model="profile.weeklyDistance"
                 label="Weekly Running Distance"
                 variant="outlined"
                 class="mb-4"
@@ -76,6 +77,7 @@
                 Longest Run Distance
               </div>
               <v-text-field
+                v-model="profile.longestRun"
                 label="Longest Run Distance"
                 variant="outlined"
                 class="mb-4"
@@ -96,6 +98,7 @@
                 Age
               </div>
               <v-text-field
+                v-model="profile.age"
                 label="Age"
                 variant="outlined"
                 class="mb-4"
@@ -116,9 +119,9 @@
               </div>
               <v-select
                 ref="Gender"
-                v-model="gender"
+                v-model="profile.gender"
                 :items="genderOptions"
-                :rules="[() => !!gender || 'This field is required']"
+                :rules="[() => !!profile.gender || 'This field is required']"
                 label="Gender"
                 placeholder="Select..."
                 required
@@ -127,11 +130,7 @@
               <v-btn color="primary" class="mt-5" @click="$router.back()"
                 >Back
               </v-btn>
-              <v-btn
-                color="primary"
-                class="mt-5"
-                @click="$router.push('TrainingGoal')"
-              >
+              <v-btn color="primary" class="mt-5" @click="goNext()">
                 Next
               </v-btn>
             </v-col>
@@ -142,20 +141,33 @@
   </v-app>
 </template>
 
-<script>
-export default {
-  name: "AthletsProfile",
+<script setup lang="ts">
+import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
+import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
 
-  data: () => ({
-    experienceLevel: null,
-    experienceLevelOptions: ["Beginner", "Intermediate", "Advanced"],
-    weeklyDistance: null,
-    longestRun: null,
-    age: null,
-    gender: null,
-    genderOptions: ["Male", "Female"],
-  }),
-};
+const router = useRouter();
+
+const store = useRunnerProfileStore();
+const { profile } = storeToRefs(store);
+const experienceLevelOptions = [
+  "Beginner",
+  "Intermediate",
+  "Advance",
+  "Expert",
+  "Elite",
+];
+const genderOptions = ["Male", "Female"];
+
+function goNext() {
+  if (store.isProfileComplete()) {
+    router.push({ name: "TrainingGoal" });
+    console.log("next page ");
+  } else {
+    alert("Please complete all fields.");
+    console.log("something is wrong ");
+  }
+}
 </script>
 
 <style scoped>
@@ -172,5 +184,8 @@ export default {
   font-size: 20px;
   font-family: Helvetica-Neue;
   color: #000000;
+}
+.text-left {
+  text-align: left;
 }
 </style>
