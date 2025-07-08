@@ -77,7 +77,6 @@
                     'Goal Time must be between 20 and 200 minutes',
                 ]"
                 clearable
-                :suffix="formattedGoalTime"
               ></v-text-field>
 
               <div
@@ -86,7 +85,17 @@
                 Target Race Date
               </div>
               <v-text-field
-                v-model="goal.targetDate"
+                :model-value="
+                  goal.targetDate
+                    ? goal.targetDate.toISOString().slice(0, 10)
+                    : ''
+                "
+                @update:model-value="
+                  (val) => {
+                    if (val) goal.targetDate = new Date(val);
+                    else goal.targetDate = null;
+                  }
+                "
                 variant="outlined"
                 class="mb-4"
                 label="Select Target Date (YYYY-MM-DD)"
@@ -126,7 +135,8 @@
               <v-btn color="primary" class="mt-5" @click="$router.back()"
                 >Back
               </v-btn>
-              <v-btn color="primary" class="mt-5" @click="$router.push()">
+
+              <v-btn color="success" class="mt-5" @click="goNext()">
                 Review Inputs
               </v-btn>
             </v-col>
@@ -140,6 +150,8 @@
 import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
+import { watch } from "vue";
+
 const store = useRunnerProfileStore();
 const { goal } = storeToRefs(store);
 const router = useRouter();
@@ -161,17 +173,13 @@ function goNext() {
     console.log("next page ");
   } else {
     alert("Please complete all fields.");
-    console.log("something is wrong ");
+    console.log("something is wrong");
   }
 }
 </script>
 
 <style scoped>
 .gradient-bg {
-  background: linear-gradient(to bottom, #00b4db, #001f3f);
-  min-height: 100vh;
-}
-<style scoped > .gradient-bg {
   background: linear-gradient(to bottom, #00b4db, #001f3f);
   min-height: 100vh;
 }

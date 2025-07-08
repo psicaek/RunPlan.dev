@@ -14,8 +14,8 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
     // 🎯 Training Goal
     goal: {
       raceDistance: "" as string,
-      goalTime: 0 as number | null, // σε λεπτά
-      targetDate: "" as string,
+      goalTime: (0 as number) || null, // σε λεπτά
+      targetDate: null as Date | null,
       trainingDays: "" as string,
     },
 
@@ -36,8 +36,18 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
 
     isGoalComplete() {
       const g = this.goal;
+      console.log({
+        raceDistance: g.raceDistance,
+        goalTime: g.goalTime,
+        trainingDays: g.trainingDays,
+        targetDate: g.targetDate,
+      });
       return (
-        !!g.raceDistance && !!g.goalTime && !!g.targetDate && !!g.trainingDays
+        g.raceDistance.trim() !== "" &&
+        g.goalTime > 0 &&
+        g.trainingDays.trim() !== "" &&
+        g.targetDate instanceof Date &&
+        !isNaN(g.targetDate.getTime())
       );
     },
   },

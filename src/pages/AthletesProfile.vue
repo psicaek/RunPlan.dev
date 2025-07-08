@@ -130,7 +130,7 @@
               <v-btn color="primary" class="mt-5" @click="$router.back()"
                 >Back
               </v-btn>
-              <v-btn color="primary" class="mt-5" @click="goNext()">
+              <v-btn color="success" class="mt-5" @click="goNext()">
                 Next
               </v-btn>
             </v-col>

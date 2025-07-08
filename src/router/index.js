@@ -3,6 +3,7 @@ import Home from "../pages/Home.vue";
 import About from "../pages/About.vue";
 import AthletesProfile from "../pages/AthletesProfile.vue";
 import TrainingGoal from "../pages/TrainingGoal.vue";
+import Review from "../pages/Review.vue";
 
 import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
 
@@ -15,6 +16,7 @@ const routes = [
   },
   { path: "/about", name: "About", component: About },
   { path: "/TrainingGoal", name: "TrainingGoal", component: TrainingGoal },
+  { path: "/review", name: "Review", component: Review },
 ];
 
 const router = createRouter({
@@ -28,6 +30,11 @@ router.beforeEach((to, from, next) => {
   if (to.name === "TrainingGoal") {
     if (!store.isProfileComplete()) {
       return next({ name: "AthletsProfile" }); // Αν δεν έχει συμπληρωθεί profile, γύρνα στο προφίλ
+    }
+  }
+  if (to.name === "Review") {
+    if (!store.isGoalComplete()) {
+      return next({ name: "TrainingGoal" });
     }
   }
 
