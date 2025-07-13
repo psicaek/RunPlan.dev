@@ -1,4 +1,8 @@
 import { defineStore } from "pinia";
+import { getWeeklyKm } from "../utils/baseWeekLoad";
+import { getWeeksUntilRace } from "../utils/totalWeeksuntilRace";
+import { generateFullTrainingPlan } from "../utils/generateFullPlan";
+import { getweekDates } from "../utils/generateWeekDays";
 
 export const useRunnerProfileStore = defineStore("runnerProfile", {
   state: () => ({
@@ -18,6 +22,17 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
       targetDate: null as Date | null,
       trainingDays: "" as string,
     },
+    trainingPlan: [] as Array<{
+      week: number;
+      phase: string;
+      weekKm: number;
+      days?: Array<{
+        day: string;
+        type: string;
+        distance: number;
+        pace?: string;
+      }>;
+    }>,
   }),
   actions: {
     isProfileComplete() {
@@ -47,6 +62,30 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
         !isNaN(g.targetDate.getTime())
       );
     },
-    generateTrainingPlan() {},
+    generateTrainingPlan() {
+      if (this.isProfileComplete() && this.isGoalComplete()) {
+        const weeklyKm = getWeeklyKm(this.profile, this.goal);
+        console.log("Υπολογισμένα χλμ/εβδομάδα:", weeklyKm);
+        // Εδώ κάνεις generate το πλάνο με βάση το weeklyKm...
+        const targetDate = getWeeksUntilRace({
+          targetDate: this.goal.targetDate,
+        });
+        console.log("calculate weeks until race date", targetDate);
+        const trainingDaysList = getweekDates(this.goal);
+        const trainingDaysStr = trainingDaysList.join(",");
+        console.log(trainingDaysStr);
+
+        const phasedPlan = generateFullTrainingPlan(
+          {
+            targetDate: this.goal.targetDate,
+            trainingDays: trainingDaysStr,
+          },
+          weeklyKm
+        );
+
+        console.log(phasedPlan);
+        this.trainingPlan = phasedPlan;
+      }
+    },
   },
 });

@@ -8,25 +8,26 @@
       </v-alert>
 
       <v-card v-for="week in plan" :key="week.week" class="mb-4" elevation="3">
-        <v-card-title
-          >Week {{ week.week }} Total KM {{ week.weekKm }}</v-card-title
-        >
+        <v-card-title :class="`phase-${week.phase}`">
+          Week {{ week.week }} — {{ week.phase }} — Total KM: {{ week.weekKm }}
+        </v-card-title>
         <v-divider></v-divider>
         <v-card-text>
-          <v-list dense>
+          <v-list dense v-if="week.days && week.days.length">
             <v-list-item v-for="(day, i) in week.days" :key="i">
               <v-list-item-content>
                 <v-list-item-title>
                   {{ day.day }} – {{ day.type }}: {{ day.distance }} km
                 </v-list-item-title>
-                <v-list-item-subtitle
-                  >Pace: {{ day.pace }}</v-list-item-subtitle
-                >
+                <v-list-item-subtitle v-if="day.pace">
+                  Pace: {{ day.pace }}
+                </v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-list>
         </v-card-text>
       </v-card>
+
       <v-row justify="center" class="mt-10">
         <v-col cols="auto">
           <v-btn color="primary" @click="goBack">Back</v-btn>
@@ -36,35 +37,39 @@
   </v-app>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { onMounted } from "vue";
 import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
 import { useRouter } from "vue-router";
+import { storeToRefs } from "pinia";
 
 const router = useRouter();
-
 const store = useRunnerProfileStore();
-const plan = store.trainingPlan;
+const { trainingPlan: plan } = storeToRefs(store); // 👈 Αυτό είναι το σωστό reactive binding
+
+onMounted(() => {
+  if (plan.value.length === 0) {
+    store.generateTrainingPlan();
+  }
+});
 
 function goBack() {
   router.back();
 }
 </script>
+
 <style scoped>
 .gradient-bg {
   background: linear-gradient(to bottom, #00b4db, #001f3f);
   min-height: 100vh;
 }
-.page-title-text {
-  font-size: 42px;
-  font-family: Helvetica-Neue;
-  color: #000000;
+.phase-endurance {
+  color: #4caf50;
 }
-.page-second-text {
-  font-size: 20px;
-  font-family: Helvetica-Neue;
-  color: #000000;
+.phase-speed {
+  color: #f44336;
 }
-.white--text {
-  color: white !important;
+.phase-taper {
+  color: #2196f3;
 }
 </style>
