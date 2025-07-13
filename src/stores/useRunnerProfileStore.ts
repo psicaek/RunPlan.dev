@@ -18,9 +18,6 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
       targetDate: null as Date | null,
       trainingDays: "" as string,
     },
-
-    // 🗓️ Generated Plan (προαιρετικά για επόμενο βήμα)
-    plan: null as string | null,
   }),
   actions: {
     isProfileComplete() {
@@ -50,5 +47,6 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
         !isNaN(g.targetDate.getTime())
       );
     },
+    generateTrainingPlan() {},
   },
 });

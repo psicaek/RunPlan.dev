@@ -6,6 +6,8 @@ import TrainingGoal from "../pages/TrainingGoal.vue";
 import Review from "../pages/Review.vue";
 
 import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
+import { components } from "vuetify/dist/vuetify.js";
+import Result from "../pages/Result.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home },
@@ -17,6 +19,7 @@ const routes = [
   { path: "/about", name: "About", component: About },
   { path: "/TrainingGoal", name: "TrainingGoal", component: TrainingGoal },
   { path: "/review", name: "Review", component: Review },
+  { path: "/Result", name: "Result", component: Result },
 ];
 
 const router = createRouter({

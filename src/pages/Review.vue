@@ -118,7 +118,7 @@
             <v-btn color="primary" @click="goBack">Back</v-btn>
           </v-col>
           <v-col cols="auto">
-            <v-btn color="success" @click="generatePlan">Generate Plan</v-btn>
+            <v-btn color="success" @click="generatePlan()">Generate Plan</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -151,12 +151,9 @@ function goBack() {
 
 function generatePlan() {
   // εδώ μπορείς να καλέσεις κάποιο action για δημιουργία προγράμματος
-  // πχ store.generatePlan() ή να προχωρήσεις σε άλλη σελίδα
-
-  alert("Plan generation not implemented yet!");
-
   // παράδειγμα πλοήγησης
-  // router.push({ name: 'PlanResult' })
+  store.generateTrainingPlan();
+  router.push("/result");
 }
 </script>
 
