@@ -150,7 +150,6 @@
 import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
-import { watch } from "vue";
 
 const store = useRunnerProfileStore();
 const { goal } = storeToRefs(store);
