@@ -3,3 +3,4 @@ dist/
 .env
 __pycache__/
 *.pyc
+last_request.json

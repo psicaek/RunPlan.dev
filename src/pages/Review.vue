@@ -37,7 +37,9 @@
 
             <v-list-item>
               <v-list-item-content>
-                <v-list-item-title>Weekly Distance:</v-list-item-title>
+                <v-list-item-title>
+                  Max Weekly Distance now :</v-list-item-title
+                >
                 <v-list-item-subtitle
                   >{{ profile.weeklyDistance }} km</v-list-item-subtitle
                 >
@@ -46,7 +48,7 @@
 
             <v-list-item>
               <v-list-item-content>
-                <v-list-item-title>Longest Run:</v-list-item-title>
+                <v-list-item-title>Longest Run ever :</v-list-item-title>
                 <v-list-item-subtitle
                   >{{ profile.longestRun }} km</v-list-item-subtitle
                 >
@@ -153,7 +155,7 @@ function generatePlan() {
   // εδώ μπορείς να καλέσεις κάποιο action για δημιουργία προγράμματος
   // παράδειγμα πλοήγησης
   store.generateTrainingPlan();
-  router.push("/result");
+  //router.push("/result");
 }
 </script>
 

@@ -2,6 +2,8 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
+import json
+from plan_generator import generate_plan_logic
 
 # FastAPI app
 app = FastAPI(
@@ -59,7 +61,13 @@ async def generate_plan(request: RunningPlanRequest):
         print(f"Profile: {request.profile.dict()}")
         print(f"Goal: {request.goal.dict()}")
         print("="*50 + "\n")
-        
+        with open("last_request.json", "w") as f:
+            json.dump({
+                "profile": request.profile.dict(),
+                "goal": request.goal.dict()
+            }, f, indent=4)
+        generate_plan_logic(request.profile, request.goal)
+           
         # For now, just return a simple response
         return {
             "success": True,
@@ -69,6 +77,7 @@ async def generate_plan(request: RunningPlanRequest):
                 "received_goal": request.goal.dict(),
                 "note": "Backend logic will be implemented next"
             }
+            
         }
         
     except Exception as e:
