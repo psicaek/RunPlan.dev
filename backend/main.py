@@ -58,25 +58,21 @@ async def generate_plan(request: RunningPlanRequest):
         print("\n" + "="*50)
         print("RECEIVED DATA FROM FRONTEND:")
         print("="*50)
-        print(f"Profile: {request.profile.dict()}")
-        print(f"Goal: {request.goal.dict()}")
+        print(f"Profile: {request.profile.model_dump()}")
+        print(f"Goal: {request.goal.model_dump()}")
         print("="*50 + "\n")
         with open("last_request.json", "w") as f:
             json.dump({
-                "profile": request.profile.dict(),
-                "goal": request.goal.dict()
+                "profile": request.profile.model_dump(),
+                "goal": request.goal.model_dump()
             }, f, indent=4)
-        generate_plan_logic(request.profile, request.goal)
+        plan = generate_plan_logic(request.profile, request.goal)
            
         # For now, just return a simple response
         return {
             "success": True,
             "message": "Data received successfully!",
-            "data": {
-                "received_profile": request.profile.dict(),
-                "received_goal": request.goal.dict(),
-                "note": "Backend logic will be implemented next"
-            }
+            "plan": plan
             
         }
         

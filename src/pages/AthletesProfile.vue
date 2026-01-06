@@ -58,18 +58,14 @@
               <v-text-field
                 v-model="profile.weeklyDistance"
                 label="Weekly Running Distance"
+                ref="weeklyDistanceInputRef"
                 variant="outlined"
                 class="mb-4"
-                :rules="[
-                  (v) => !!v || 'This field is required',
-                  (v) => /^[0-9]+$/.test(v) || 'Only numbers are allowed',
-                  (v) =>
-                    (parseInt(v) >= 20 && parseInt(v) <= 200) ||
-                    'Longest Weekly Distance must be between 20 and 200',
-                ]"
+                :rules="[weeklyDistanceRule]"
                 placeholder="e.g., 10 km"
                 color="blue"
                 suffix="km"
+                :disabled="!profile.experienceLevel"
               ></v-text-field>
               <div
                 style="text-align: left; margin-bottom: 4px; font-weight: 500"
@@ -142,30 +138,92 @@
 </template>
 
 <script setup lang="ts">
-import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
-import { storeToRefs } from "pinia";
+import { ref, computed, watch } from "vue";
 import { useRouter } from "vue-router";
+import { storeToRefs } from "pinia";
+import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
+
+// Pinia store
+const store = useRunnerProfileStore();
+const { profile } = storeToRefs(store);
 
 const router = useRouter();
 
-const store = useRunnerProfileStore();
-const { profile } = storeToRefs(store);
+// Refs
+const weeklyDistanceInputRef = ref();
+
+// Experience levels
 const experienceLevelOptions = [
   "Beginner",
   "Intermediate",
-  "Advance",
+  "Advanced",
   "Expert",
   "Elite",
 ];
+
+// Gender
 const genderOptions = ["Male", "Female"];
 
+// Weekly distance ranges per experience level
+const weeklyDistanceRanges: Record<string, [number, number]> = {
+  Beginner: [5, 15],
+  Intermediate: [10, 25],
+  Advanced: [20, 50],
+  Expert: [40, 80],
+  Elite: [70, 150],
+};
+
+// Validation rule for weekly distance
+const weeklyDistanceRule = computed(() => {
+  return (v: string | number) => {
+    if (v === null || v === undefined || v === "")
+      return "This field is required";
+
+    const value = parseInt(String(v));
+    const level = profile.value.experienceLevel;
+
+    if (!level) return "Select experience level first";
+
+    const [min, max] =
+      weeklyDistanceRanges[level as keyof typeof weeklyDistanceRanges];
+    return value >= min && value <= max
+      ? true
+      : `Weekly distance for ${level} must be between ${min} and ${max} km`;
+  };
+});
+
+// Watch experience level to reset/validate weekly distance
+watch(
+  () => profile.value.experienceLevel,
+  () => {
+    const level = profile.value.experienceLevel;
+    if (!level) return;
+
+    const [min, max] =
+      weeklyDistanceRanges[level as keyof typeof weeklyDistanceRanges];
+
+    // Reset weekly distance if out of new range
+    if (
+      profile.value.weeklyDistance !== null &&
+      profile.value.weeklyDistance !== undefined &&
+      (profile.value.weeklyDistance < min || profile.value.weeklyDistance > max)
+    ) {
+      profile.value.weeklyDistance = null;
+    }
+
+    // Force Vuetify validation
+    if (weeklyDistanceInputRef.value?.validate) {
+      weeklyDistanceInputRef.value.validate(true);
+    }
+  }
+);
+
+// Navigation
 function goNext() {
   if (store.isProfileComplete()) {
     router.push({ name: "TrainingGoal" });
-    console.log("next page ");
   } else {
     alert("Please complete all fields.");
-    console.log("something is wrong ");
   }
 }
 </script>

@@ -21,18 +21,13 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
       targetDate: null as Date | null,
       trainingDays: "" as string,
     },
-    trainingPlan: [] as Array<{
-      week: number;
-      phase: string;
-      weekKm: number;
-      days?: Array<{
-        day: string;
-        type: string;
-        distance: number;
-        pace?: string;
-      }>;
-    }>,
+
+    // ⚙️ Generation State
+    trainingPlan: null as any,
+    isGenerating: false,
+    generationError: null as string | null,
   }),
+
   actions: {
     isProfileComplete() {
       const p = this.profile;
@@ -78,9 +73,6 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
         targetDate: null,
         trainingDays: "",
       };
-      this.trainingPlan = null;
-      this.isGenerating = false;
-      this.generationError = null;
     },
 
     /**
@@ -135,7 +127,7 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
         console.log("Received from backend:", response);
 
         // Store the result
-        this.trainingPlan = response.data;
+        this.trainingPlan = response.plan;
 
         return response;
       } catch (error) {

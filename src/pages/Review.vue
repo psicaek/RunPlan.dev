@@ -117,7 +117,7 @@
 
         <v-row justify="center" class="mt-10">
           <v-col cols="auto">
-            <v-btn color="primary" @click="goBack">Back</v-btn>
+            <v-btn color="primary" @click="$router.back()">Back</v-btn>
           </v-col>
           <v-col cols="auto">
             <v-btn color="success" @click="generatePlan()">Generate Plan</v-btn>
@@ -147,15 +147,11 @@ const formattedTargetDate = computed(() => {
   return d.toLocaleDateString();
 });
 
-function goBack() {
-  router.back();
-}
-
 function generatePlan() {
   // εδώ μπορείς να καλέσεις κάποιο action για δημιουργία προγράμματος
   // παράδειγμα πλοήγησης
   store.generateTrainingPlan();
-  //router.push("/result");
+  router.push("/result");
 }
 </script>
 

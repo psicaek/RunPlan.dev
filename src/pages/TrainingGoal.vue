@@ -124,7 +124,7 @@
               <v-select
                 label="Training Days Per Week "
                 v-model="goal.trainingDays"
-                :items="trainingDaysOptions"
+                :items="allowedTrainingDays"
                 :rules="[(v) => !!v || 'This field is required']"
                 variant="outlined"
                 class="mb-4"
@@ -150,14 +150,22 @@
 import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
+import { computed } from "vue";
 
 const store = useRunnerProfileStore();
 const { goal } = storeToRefs(store);
+const { profile } = storeToRefs(store);
 const router = useRouter();
 
-const raceDistanceOptions = ["5K", "10K", "Half Marathon", "Marathon"];
+const maxTrainingDaysPerLevel: Record<string, [number, number]> = {
+  Beginner: [2, 3],
+  Intermediate: [2, 5],
+  Advanced: [4, 6],
+  Expert: [4, 7],
+  Elite: [5, 7],
+};
+
 const trainingDaysOptions = [
-  "1 day",
   "2 days",
   "3 days",
   "4 days",
@@ -165,6 +173,20 @@ const trainingDaysOptions = [
   "6 days",
   "7 days",
 ];
+
+const allowedTrainingDays = computed(() => {
+  const level = profile.value.experienceLevel;
+  if (!level) return trainingDaysOptions; // no level selected yet
+
+  const [minDays, maxDays] = maxTrainingDaysPerLevel[level];
+
+  return trainingDaysOptions.filter((day) => {
+    const numberOfDays = parseInt(day); // "3 days" -> 3
+    return numberOfDays >= minDays && numberOfDays <= maxDays;
+  });
+});
+
+const raceDistanceOptions = ["5K", "10K", "Half Marathon", "Marathon"];
 
 function goNext() {
   if (store.isGoalComplete()) {

@@ -19,7 +19,7 @@ export interface RunningPlanRequest {
 export interface RunningPlanResponse {
   success: boolean;
   message: string;
-  data?: any; // We'll define this structure later
+  plan?: any;
 }
 
 const API_BASE_URL = "http://localhost:8000";
