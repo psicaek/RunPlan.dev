@@ -22,15 +22,31 @@ def generate_plan_logic(profile, goal):
     print(weekly_type_of_runs)
     print(weekly_mileage)
     print(run_per_type)
-   
+
+    weeks = []
+
+    for i in range(weeks_until):
+        runs = []
+
+        for run_type in weekly_type_of_runs:
+            runs.append({
+                "type": run_type,
+                "distance": round(run_per_type[i][run_type], 1)
+                })
+        weeks.append({
+            "week": i + 1,
+            "total_km": round(weekly_mileage[i], 1),
+            "runs": runs
+        })
 
     return {
         "weeks_until": weeks_until,
-        "pace":  pace,
-        "weekly_type_of_runs": weekly_type_of_runs,
-        "weekly_mileage": weekly_mileage,
-        "run_per_type": run_per_type
+        "pace": pace,
+        "weeks": weeks
     }
+   
+
+    
     
    
 

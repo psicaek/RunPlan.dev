@@ -3,85 +3,37 @@
     <v-container>
       <h2 class="text-h4 font-weight-bold mb-6">🏁 Your Training Plan</h2>
 
-      <!-- No plan -->
-      <v-alert v-if="!plan" type="info" class="mb-4">
+      <v-alert
+        v-if="!plan || !plan.weeks || plan.weeks.length === 0"
+        type="info"
+        class="mb-4"
+      >
         No plan generated yet.
       </v-alert>
 
-      <!-- Plan exists -->
-      <div v-else>
-        <!-- Summary -->
-        <v-card class="mb-6" elevation="2">
-          <v-card-text>
-            <p><strong>Weeks until race:</strong> {{ plan.weeks_until }}</p>
-            <p><strong>Target pace:</strong> {{ plan.pace }} min/km</p>
-            <p>
-              <strong>Training types:</strong>
-              {{ plan.weekly_type_of_runs.join(", ") }}
-            </p>
-          </v-card-text>
-        </v-card>
+      <v-card
+        v-for="week in plan.weeks"
+        :key="week.week"
+        class="mb-4"
+        elevation="3"
+      >
+        <v-card-title>
+          Week {{ week.week }} — Total {{ week.total_km }} km
+        </v-card-title>
 
-        <!-- Weekly cards -->
-        <v-card
-          v-for="(weekKm, index) in plan.weekly_mileage"
-          :key="index"
-          class="mb-4"
-          elevation="3"
-        >
-          <v-card-title>
-            Week {{ index + 1 }} — Total: {{ weekKm }} km
-          </v-card-title>
+        <v-divider></v-divider>
 
-          <v-divider />
+        <v-card-text>
+          <v-list dense>
+            <v-list-item v-for="(run, index) in week.runs" :key="index">
+              <v-list-item-title>
+                {{ run.type.toUpperCase() }} — {{ run.distance }} km
+              </v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-card-text>
+      </v-card>
 
-          <v-card-text>
-            <v-list dense>
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>
-                    🟢 Easy run: {{ plan.run_per_type[index].easy }} km
-                  </v-list-item-title>
-                  <v-list-item-subtitle>
-                    Pace: {{ plan.pace }}
-                  </v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>
-                    🔴 Interval run: {{ plan.run_per_type[index].interval }} km
-                  </v-list-item-title>
-                  <v-list-item-subtitle>
-                    Faster than {{ plan.pace }}
-                  </v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>
-                    🔵 Long run: {{ plan.run_per_type[index].long }} km
-                  </v-list-item-title>
-                  <v-list-item-subtitle> Easy pace </v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-
-              <v-list-item>
-                <v-list-item-content>
-                  <v-list-item-title>
-                    🔵 Long run: {{ plan.run_per_type[index].long }} km
-                  </v-list-item-title>
-                  <v-list-item-subtitle> Easy pace </v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-card-text>
-        </v-card>
-      </div>
-
-      <!-- Back button -->
       <v-row justify="center" class="mt-10">
         <v-col cols="auto">
           <v-btn color="primary" @click="goBack">Back</v-btn>
