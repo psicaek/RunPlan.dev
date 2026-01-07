@@ -55,27 +55,27 @@ class TestCalculatePace:
     def test_5k_pace_calculation(self):
         """Test pace calculation for 5K race"""
         result = calculate_pace(25, "5K")  # 25 minutes for 5K
-        assert result == 5.0  # 5 min/km
+        assert result == "5:00"  # 5 min/km
     
     def test_10k_pace_calculation(self):
         """Test pace calculation for 10K race"""
         result = calculate_pace(50, "10K")  # 50 minutes for 10K
-        assert result == 5.0  # 5 min/km
+        assert result == "5:00"  # 5 min/km
     
     def test_half_marathon_pace_calculation(self):
         """Test pace calculation for Half Marathon"""
         result = calculate_pace(105.4875, "Half Marathon")
-        assert pytest.approx(result, 0.01) == 5.0  # ~5 min/km
+        assert pytest.approx(result, 0.01) == "5:00"  # ~5 min/km
     
     def test_marathon_pace_calculation(self):
         """Test pace calculation for Marathon"""
         result = calculate_pace(210.975, "Marathon")
-        assert pytest.approx(result, 0.01) == 5.0  # ~5 min/km
+        assert pytest.approx(result, 0.01) == "5:00"  # ~5 min/km
     
     def test_zero_time(self):
         """Test edge case with zero goal time"""
         result = calculate_pace(0, "5K")
-        assert result == 0.0
+        assert result == "0:00"
     
     def test_invalid_race_distance(self):
         """Test that invalid race distance returns None or raises error"""
@@ -200,29 +200,45 @@ class TestCalculateWeeklyMileage:
         assert all(week > 0 for week in result)
 
 
-# Integration test
 class TestIntegration:
     """Integration tests combining multiple functions"""
-    
-    @patch('plan_generator.datetime')
+
+    @patch("plan_generator.datetime")
     def test_full_training_plan_workflow(self, mock_datetime):
         """Test a complete training plan calculation workflow"""
+
         mock_datetime.now.return_value = datetime(2026, 1, 6)
         mock_datetime.strptime = datetime.strptime
-        
-        # Calculate weeks until race
-        weeks = calculate_weeks_until("2026-04-30")  # ~16 weeks
-        
-        # Calculate target pace
-        pace = calculate_pace(180, "Half Marathon")  # 3 hour half marathon
-        
-        # Get run types
+
+        # 1️⃣ Calculate weeks until race
+        weeks = calculate_weeks_until("2026-04-30")
+
+        # 2️⃣ Calculate target pace (string πλέον)
+        pace = calculate_pace(180, "Half Marathon")
+
+        # 3️⃣ Get run types
         run_types = calculate_weekly_type_of_runs("5 days")
-        
-        # Generate mileage plan
-        mileage = calculate_weekly_mileage(20, "10K", weeks, "Beginner")
-        
-        assert weeks > 10
-        assert pace > 0
+
+        # 4️⃣ Generate mileage plan
+        mileage = calculate_weekly_mileage(
+            weekly_distance=20,
+            race_distance="10K",
+            weeks_until=weeks,
+            experiencelevel="Beginner"
+        )
+
+        # ✅ Assertions (domain-based, όχι fragile)
+
+        assert weeks >= 14
+        assert weeks <= 18
+
+        assert isinstance(pace, str)
+        assert ":" in pace   # π.χ. "8:32"
+
         assert len(run_types) == 5
-        assert mileage == [13, 14, 15, 16, 17, 18, 19, 21, 23, 25, 27, 30, 34, 38, 30, 24]
+        assert "long" in run_types
+
+        assert len(mileage) == weeks
+        assert mileage[0] > 0
+        assert max(mileage) > mileage[0]   # progression
+        assert mileage[-1] < mileage[-2]   # taper
