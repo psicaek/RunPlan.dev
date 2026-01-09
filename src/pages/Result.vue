@@ -1,5 +1,5 @@
 <template>
-  <v-app class="gradient-bg">
+  <v-main class="gradient-bg">
     <v-container>
       <h2 class="text-h4 font-weight-bold mb-6">🏁 Your Training Plan</h2>
 
@@ -40,7 +40,7 @@
         </v-col>
       </v-row>
     </v-container>
-  </v-app>
+  </v-main>
 </template>
 
 <script setup lang="ts">
@@ -48,6 +48,7 @@ import { onMounted } from "vue";
 import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
 import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
+import "../assets/global.css";
 
 const router = useRouter();
 const store = useRunnerProfileStore();
@@ -63,19 +64,3 @@ function goBack() {
   router.back();
 }
 </script>
-
-<style scoped>
-.gradient-bg {
-  background: linear-gradient(to bottom, #00b4db, #001f3f);
-  min-height: 100vh;
-}
-.phase-endurance {
-  color: #4caf50;
-}
-.phase-speed {
-  color: #f44336;
-}
-.phase-taper {
-  color: #2196f3;
-}
-</style>

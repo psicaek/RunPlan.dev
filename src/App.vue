@@ -1,48 +1,86 @@
 <template>
   <v-app>
-    <v-layout>
-      <!-- Blue gradient app bar matching your form page -->
-      <v-app-bar
-        color="primary"
-        dark
-        elevation="0"
-        style="
-          background: linear-gradient(
-            135deg,
-            #00b4db,
-            0%,
-            #001f3f 100%
-          ) !important;
-        "
-      >
-        <v-app-bar-nav-icon
-          ><v-img
-            src="src/assets/mainLogo.svg"
-            width="30"
-            height="30"
-            class="mr-2"
-          ></v-img
-        ></v-app-bar-nav-icon>
+    
+    <v-navigation-drawer
+      v-model="drawer"
+      :rail="rail"
+      permanent
+      @click.stop = "rail = !rail"
+      style="
+        background: linear-gradient(
+          135deg,
+          #00b4db,
+          0%,
+          #001f3f 100%
+        ) !important;
+      "
+      color: aliceblue
+    >
+      <v-list>
+        <v-list-item prepend-avatar="src/assets/mainLogo.svg" title="Run Plan" style="color: aliceblue">
+          <template v-slot:append>
+            <v-btn
+              icon="mdi-chevron-left"
+              variant="text"
+              style="color: aliceblue"
+              :rail="rail"
+              @click.stop = "rail = !rail"
+            ></v-btn>
+          </template>
+        </v-list-item>
+      </v-list>
 
-        <div class="d-flex align-center">
-          <span class="font-weight-bold text-h6">RunPlan.dev</span>
-        </div>
+      <v-divider></v-divider>
 
-        <v-spacer></v-spacer>
+      <v-list density="compact" nav>
+        <v-list-item
+          prepend-icon="mdi-home-city"
+          title="Home"
+          to="/"
+          style="color: aliceblue"
+        />
 
-        <v-btn to="/generate" text class="mr-4"> Generator </v-btn>
-        <v-btn to="/about" text> About </v-btn>
-      </v-app-bar>
+        <v-list-item
+          prepend-icon="mdi-account"
+          title="About"
+          to="/about"
+          style="color: aliceblue"
+        />
 
-      <v-main>
-        <router-view></router-view>
-      </v-main>
-    </v-layout>
+        <v-list-item
+          prepend-icon="mdi-run-fast"
+          
+          title="Run Plan "
+          to="/"
+          style="color: aliceblue"
+        />
+      </v-list>
+    </v-navigation-drawer>
+
+    <router-view></router-view>
   </v-app>
 </template>
 
 <script>
+import { ref } from 'vue'
+
+import router from './router';
+
+function home() {
+  router.push({ name: "Home"})
+}
+
 export default {
   name: "App",
-};
+  setup() {
+    const drawer = ref(true)
+    const rail = ref(true)
+
+    return {
+      drawer,
+      rail,
+    }
+  },
+}
 </script>
+

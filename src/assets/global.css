@@ -1,0 +1,65 @@
+.gradient-bg {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #00b4db, #01526d);
+  color: rgb(0, 0, 0);
+}
+.title-runplan {
+  display: flex;
+  background-color: #001f3f;
+  justify-content: space-between;
+  color: #f3ebeb;
+}
+.title-runplan2 {
+  display: flex;
+  background-color: #001f3f;
+  color: #f3ebeb;
+  justify-content: center;
+}
+
+.avantar{
+  display: flex;
+  justify-content: center;
+  
+}
+.nav-item {
+  font-weight: 600;          /* bold text */
+  color: #1e293b;
+  transition: color 0.2s ease;
+}
+
+.page-title-text {
+  display: flex;
+  justify-content: center;
+  font-size: 48px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #001f3f;
+  text-align: center;
+  
+}
+.page-second-text {
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #001f3f;
+  
+.text-left {
+  text-align: left;
+}
+.phase-endurance {
+  color: #001f3f;
+}
+.phase-speed {
+  color: #f44336;
+}
+.phase-taper {
+  color: #2196f3;
+}
+.white--text {
+  color: white !important;
+}
+
+.title-home {
+  display: flex; /* d-flex */
+  flex-direction: column; /* flex-column */
+  align-items: center; /* align-center */
+  text-align: center; /* text-center */
+}

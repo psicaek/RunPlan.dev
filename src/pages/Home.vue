@@ -1,77 +1,58 @@
 <template>
-  <v-app>
-    <v-main class="gradient-bg">
-      <v-container style="max-width: 1900px">
-        <v-row align="center" justify="center" class="mb-4">
+  <v-main class="gradient-bg">
+    <v-card class="rounded-0">
+      <!-- Title with icons -->
+      <span class="title-runplan text-h">
+        <v-icon size="40">mdi-run</v-icon>
+        <span>Run Plan Generator</span>
+        <v-icon size="40">mdi-run-fast</v-icon>
+      </span>
+      <!-- Subtitle under the title -->
+      <span class="title-runplan2">
+        Create your personalized running plan in minutes!
+      </span>
+    </v-card>
+    <!-- Hero Section -->
+    <v-container fluid class="fill-height">
+      <v-row align="center" justify="center" class="text-center">
+        <v-col cols="12" md="8" lg="6">
           <!-- Logo -->
-          <v-col cols="auto">
-            <v-img
-              src="src/assets/mainLogo.svg"
-              alt="Run Plan Logo"
-              width="60"
-              class="mb-1"
-            ></v-img>
-          </v-col>
-          <v-col>
-            <!-- Title & Subtitle -->
-            <h1 class="text-h5 font-weight-bold mb-0">Run Plan Generator</h1>
+          <v-img
+            src="src/assets/mainLogo.svg"
+            alt="Run Plan Logo"
+            width="160"
+            class="mx-auto mb-6"
+          />
 
-            <p class="text-subtitle-2">
-              Create your personalized running plan in minutes!
-            </p>
-          </v-col>
-        </v-row>
-      </v-container>
-      <!-- Title & Subtitle -->
-      <v-col> </v-col>
+          <!-- Title -->
+          <h1 class="text-h2 font-weight-bold mb-4">Run Plan Generator</h1>
 
-      <v-container class="text-center white--text">
-        <v-row>
-          <v-col cols="12" sm="6" offset-sm="3">
-            <p class="page-title-text">
-              Create your personalized running plan in minutes!
-            </p>
-            <p class="page-second-text">
-              Answer a few questions and get a tailored plan to help you achieve
-              your running goals.
-            </p>
-          </v-col>
-        </v-row>
-      </v-container>
-      <v-row class="text-center">
-        <v-col cols="12" sm="6" offset-sm="3">
+          <!-- Subtitle -->
+          <p class="text-h6 mb-8">
+            Answer a few simple questions and get a running plan tailored to
+            your goals.
+          </p>
+
+          <!-- Button -->
           <v-btn
-            color="primary"
-            class="mt-5"
+            color="#001f3f"
+            size="x-large"
+            rounded="xl"
+            elevation="24"
             @click="$router.push('/athletsProfile')"
           >
             Get Started
+            <v-icon class="ml-2">mdi-arrow-right-box</v-icon>
           </v-btn>
         </v-col>
       </v-row>
-    </v-main>
-  </v-app>
+    </v-container>
+  </v-main>
 </template>
 
 <script>
+import "../assets/global.css";
 export default {
   name: "HomePage",
 };
 </script>
-
-<style scoped>
-.gradient-bg {
-  background: linear-gradient(to bottom, #00b4db, #001f3f);
-  min-height: 100vh;
-}
-.page-title-text {
-  font-size: 25px;
-  font-family: Helvetica-Neue;
-  color: #000000;
-}
-.page-second-text {
-  font-size: 18px;
-  font-family: Helvetica-Neue;
-  color: #000000;
-}
-</style>
