@@ -1,77 +1,119 @@
 <template>
   <v-main class="gradient-bg">
-    <v-container style="max-width: 1900px">
-      <v-row align="center" justify="center" class="mb-4">
-        <!-- Logo -->
-        <v-col cols="auto">
-          <v-img
-            src="src/assets/mainLogo.svg"
-            alt="Run Plan Logo"
-            width="60"
-            class="mb-1"
-          ></v-img>
-        </v-col>
-        <v-col>
-          <h1 class="text-h5 font-weight-bold mb-0">Run Plan Generator</h1>
-          <p class="text-subtitle-2">
-            Review your inputs before generating your plan.
-          </p>
-        </v-col>
-      </v-row>
-    </v-container>
+    <v-card class="rounded-0">
+      <!-- Title with icons -->
+      <span class="title-runplan text-h">
+        <v-icon size="40">mdi-run</v-icon>
+        <span>Run Plan Generator</span>
+        <v-icon size="40">mdi-run-fast</v-icon>
+      </span>
+      <!-- Subtitle under the title -->
+      <span class="title-runplan2">
+        Create your personalized running plan in minutes!
+      </span>
+    </v-card>
 
-    <v-container class="page-second-text">
-      <v-row>
-        <v-col cols="12" sm="8" offset-sm="2" align="center">
-          <h2>Athlete Profile</h2>
+    <v-container width="800px" style="justify-content: space-between">
+      <v-card class="result-card" elevation="14">
+        <v-row style="display: flex" justify="center">
+          <v-card
+            class="athlets-card"
+            elevation="14"
+            rounded="xl"
+            style="margin-top: 30px"
+          >
+            <!-- TITLE -->
+            <template #title>
+              <span style="font-weight: bolder"> Athletes Profile </span>
+            </template>
 
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Experience Level:</v-list-item-title>
-              <v-list-item-subtitle>{{
-                profile.experienceLevel || "-"
-              }}</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
+            <!-- SUBTITLE -->
+            <template #subtitle>
+              <span style="color: #001f3f">
+                Check if all Information is Correct.
+              </span>
+            </template>
+          </v-card>
+        </v-row>
 
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title> Max Weekly Distance now :</v-list-item-title>
-              <v-list-item-subtitle
-                >{{ profile.weeklyDistance }} km</v-list-item-subtitle
-              >
-            </v-list-item-content>
-          </v-list-item>
+        <v-row>
+          <v-col align="center">
+            <v-list-item>
+              <template #title> Experience Level: </template>
+              <template #subtitle>
+                <span class="profile-subtitle">
+                  {{ profile.experienceLevel || "-" }}
+                </span>
+              </template>
+            </v-list-item>
 
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Longest Run ever :</v-list-item-title>
-              <v-list-item-subtitle
-                >{{ profile.longestRun }} km</v-list-item-subtitle
-              >
-            </v-list-item-content>
-          </v-list-item>
+            <v-list-item>
+              <template #title> Max Weekly Distance now: </template>
+              <template #subtitle>
+                <span class="profile-subtitle">
+                  {{
+                    profile.weeklyDistance
+                      ? profile.weeklyDistance + " km"
+                      : "-"
+                  }}
+                </span>
+              </template>
+            </v-list-item>
 
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Age:</v-list-item-title>
-              <v-list-item-subtitle>{{ profile.age }}</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
+            <v-list-item>
+              <template #title> Longest Run ever: </template>
+              <template #subtitle>
+                <span class="profile-subtitle">
+                  {{ profile.longestRun ? profile.longestRun + " km" : "-" }}
+                </span>
+              </template>
+            </v-list-item>
 
-          <v-list-item>
-            <v-list-item-content>
-              <v-list-item-title>Gender:</v-list-item-title>
-              <v-list-item-subtitle>{{ profile.gender }}</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-col>
-      </v-row>
+            <v-list-item>
+              <template #title> Age: </template>
+              <template #subtitle>
+                <span class="profile-subtitle">
+                  {{ profile.age || "-" }}
+                </span>
+              </template>
+            </v-list-item>
 
-      <v-row class="page-second-text">
-        <v-col cols="12" sm="8" offset-sm="2" align="center">
-          <h2>Training Goal</h2>
+            <v-list-item>
+              <template #title> Gender: </template>
+              <template #subtitle>
+                <span class="profile-subtitle">
+                  {{ profile.gender || "-" }}
+                </span>
+              </template>
+            </v-list-item>
+          </v-col>
+        </v-row>
+      </v-card>
+      <v-divider class="devider"></v-divider>
+      <v-card class="result-card" elevation="14">
+        <v-row style="display: flex" justify="center">
+          <v-row style="display: flex" justify="center">
+            <v-card
+              class="athlets-card"
+              elevation="14"
+              rounded="xl"
+              style="margin-top: 45px"
+            >
+              <!-- TITLE -->
+              <template #title>
+                <span style="font-weight: bolder"> Training Goal </span>
+              </template>
 
+              <!-- SUBTITLE -->
+              <template #subtitle>
+                <span style="color: #001f3f">
+                  Check if all Information is Correct.
+                </span>
+              </template>
+            </v-card>
+          </v-row>
+        </v-row>
+        <v-col align="center" style="margin-top: 25px">
           <v-list-item>
             <v-list-item-content>
               <v-list-item-title>Race Distance:</v-list-item-title>
@@ -108,16 +150,27 @@
             </v-list-item-content>
           </v-list-item>
         </v-col>
-      </v-row>
-
-      <v-row justify="center" class="mt-10">
-        <v-col cols="auto">
-          <v-btn color="primary" @click="$router.back()">Back</v-btn>
-        </v-col>
-        <v-col cols="auto">
-          <v-btn color="success" @click="generatePlan()">Generate Plan</v-btn>
-        </v-col>
-      </v-row>
+      </v-card>
+      <div class="d-flex justify-space-between">
+        <v-btn
+          color="#001f3f"
+          class="mt-5"
+          rounded
+          elevation="16"
+          @click="$router.back()"
+        >
+          <v-icon size="20">mdi-arrow-left-box</v-icon>Back
+        </v-btn>
+        <v-btn
+          color="success"
+          class="mt-5"
+          rounded
+          elevation="16"
+          @click="generatePlan()"
+          >Review
+          <v-icon size="20" color="#001f3f">mdi-arrow-right-box</v-icon></v-btn
+        >
+      </div>
     </v-container>
   </v-main>
 </template>

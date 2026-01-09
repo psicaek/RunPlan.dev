@@ -1,134 +1,145 @@
 <template>
   <v-main class="gradient-bg">
-    <v-container style="max-width: 1900px">
-      <v-row align="center" justify="center" class="mb-4">
-        <!-- Logo -->
-        <v-col cols="auto">
-          <v-img
-            src="src/assets/mainLogo.svg"
-            alt="Run Plan Logo"
-            width="60"
-            class="mb-1"
-          ></v-img>
-        </v-col>
-        <v-col>
-          <!-- Title & Subtitle -->
-          <h1 class="text-h5 font-weight-bold mb-0">Run Plan Generator</h1>
+    <v-card class="rounded-0">
+      <!-- Title with icons -->
+      <span class="title-runplan text-h">
+        <v-icon size="40">mdi-run</v-icon>
+        <span>Run Plan Generator</span>
+        <v-icon size="40">mdi-run-fast</v-icon>
+      </span>
+      <!-- Subtitle under the title -->
+      <span class="title-runplan2">
+        Create your personalized running plan in minutes!
+      </span>
+    </v-card>
 
-          <p class="text-subtitle-2">
-            Create your personalized running plan in minutes!
-          </p>
-        </v-col>
-      </v-row>
-    </v-container>
-    <v-container class="title-text text-center white--text">
-      <v-row>
-        <v-col cols="12" sm="6" offset-sm="3">
-          <p class="page-title-text">Training Goal</p>
-          <p class="page-second-text">
-            Set you goal race and training preferences.
-          </p>
-        </v-col>
-      </v-row>
-    </v-container>
     <v-container class="text-center">
-      <v-card-text>
-        <v-row justify="center">
-          <v-col cols="12" sm="6">
-            <div style="text-align: left; margin-bottom: 4px; font-weight: 500">
-              Goal Race Distance
-            </div>
-            <v-select
-              ref="Goal Race Distance"
-              v-model="goal.raceDistance"
-              :items="raceDistanceOptions"
-              :rules="[() => !!raceDistanceOptions || 'This field is required']"
-              class="mb-4"
-              label="Goal Race Distance"
-              variant="outlined"
-              placeholder="e.g., 5K, 10K, Half Marathon, Marathon"
-              color="blue"
-            ></v-select>
-            <div style="text-align: left; margin-bottom: 4px; font-weight: 500">
-              Goal Time
-            </div>
-            <v-text-field
-              v-model="goal.goalTime"
-              label="Goal Time"
-              variant="outlined"
-              class="mb-4"
-              placeholder="Enter time in minutes (20-300)"
-              color="blue"
-              type="text"
-              min="14"
-              max="300"
-              :rules="[
-                (v) => !!v || 'This field is required',
-                (v) => /^[0-9]+$/.test(v) || 'Only numbers are allowed',
-                (v) =>
-                  (parseInt(v) >= 14 && parseInt(v) <= 300) ||
-                  'Goal Time must be between 20 and 200 minutes',
-              ]"
-              clearable
-            ></v-text-field>
+      <v-row style="display: flex" justify="center">
+        <v-card
+          class="athlets-card"
+          prepend-avatar="https://randomuser.me/api/portraits/women/10.jpg"
+          variant="elevated"
+          elevation="7"
+        >
+          <!-- TITLE -->
+          <template #title>
+            <span> Training Goal </span>
+          </template>
 
-            <div style="text-align: left; margin-bottom: 4px; font-weight: 500">
-              Target Race Date
-            </div>
-            <v-text-field
-              :model-value="
-                goal.targetDate
-                  ? goal.targetDate.toISOString().slice(0, 10)
-                  : ''
-              "
-              @update:model-value="
-                (val) => {
-                  if (val) goal.targetDate = new Date(val);
-                  else goal.targetDate = null;
-                }
-              "
-              variant="outlined"
-              class="mb-4"
-              label="Select Target Date (YYYY-MM-DD)"
-              color="blue"
-              :rules="[
-                (v) => (v && v.length > 0) || 'This field is required',
-                (v) => {
-                  if (!v) return true; // αν δεν έχει τιμή, το χειρίζεται ο πρώτος κανόνας
-                  const selectedDate = new Date(v);
-                  const today = new Date();
-                  // μηδενίζουμε ώρες-λεπτά-δευτερόλεπτα για ακριβή σύγκριση ημερομηνιών μόνο
-                  today.setHours(0, 0, 0, 0);
-                  return selectedDate >= today || 'Date cannot be in the past';
-                },
-              ]"
-              type="date"
-            ></v-text-field>
+          <!-- SUBTITLE -->
+          <template #subtitle>
+            <span style="color: #001f3f">
+              Set you goal race and training preferences
+            </span>
+          </template>
+        </v-card>
+      </v-row>
 
-            <div style="text-align: left; margin-bottom: 4px; font-weight: 500">
-              Training Days Per Week
-            </div>
-            <v-select
-              label="Training Days Per Week "
-              v-model="goal.trainingDays"
-              :items="allowedTrainingDays"
-              :rules="[(v) => !!v || 'This field is required']"
-              variant="outlined"
-              class="mb-4"
-              placeholder="e.g., 3 days"
-              color="blue"
-            ></v-select>
+      <v-row class="choosing-fields">
+        <v-col sm="4">
+          <div style="text-align: left; margin-bottom: 4px; font-weight: 500">
+            Goal Race Distance
+          </div>
+          <v-select
+            ref="Goal Race Distance"
+            v-model="goal.raceDistance"
+            :items="raceDistanceOptions"
+            :rules="[() => !!raceDistanceOptions || 'This field is required']"
+            class="mb-4"
+            label="Goal Race Distance"
+            variant="outlined"
+            placeholder="e.g., 5K, 10K, Half Marathon, Marathon"
+            color="blue"
+          ></v-select>
+          <div style="text-align: left; margin-bottom: 4px; font-weight: 500">
+            Goal Time
+          </div>
+          <v-text-field
+            v-model="goal.goalTime"
+            label="Goal Time"
+            variant="outlined"
+            class="mb-4"
+            placeholder="Enter time in minutes (20-300)"
+            color="blue"
+            type="text"
+            min="14"
+            max="300"
+            :rules="[
+              (v) => !!v || 'This field is required',
+              (v) => /^[0-9]+$/.test(v) || 'Only numbers are allowed',
+              (v) =>
+                (parseInt(v) >= 14 && parseInt(v) <= 300) ||
+                'Goal Time must be between 20 and 200 minutes',
+            ]"
+            clearable
+          ></v-text-field>
 
-            <v-btn color="primary" class="mt-5" @click="$router.back()"
-              >Back
+          <div style="text-align: left; margin-bottom: 4px; font-weight: 500">
+            Target Race Date
+          </div>
+          <v-text-field
+            :model-value="
+              goal.targetDate ? goal.targetDate.toISOString().slice(0, 10) : ''
+            "
+            @update:model-value="
+              (val) => {
+                if (val) goal.targetDate = new Date(val);
+                else goal.targetDate = null;
+              }
+            "
+            variant="outlined"
+            class="mb-4"
+            label="Select Target Date (YYYY-MM-DD)"
+            color="blue"
+            :rules="[
+              (v) => (v && v.length > 0) || 'This field is required',
+              (v) => {
+                if (!v) return true; // αν δεν έχει τιμή, το χειρίζεται ο πρώτος κανόνας
+                const selectedDate = new Date(v);
+                const today = new Date();
+                // μηδενίζουμε ώρες-λεπτά-δευτερόλεπτα για ακριβή σύγκριση ημερομηνιών μόνο
+                today.setHours(0, 0, 0, 0);
+                return selectedDate >= today || 'Date cannot be in the past';
+              },
+            ]"
+            type="date"
+          ></v-text-field>
+
+          <div style="text-align: left; margin-bottom: 4px; font-weight: 500">
+            Training Days Per Week
+          </div>
+          <v-select
+            label="Training Days Per Week "
+            v-model="goal.trainingDays"
+            :items="allowedTrainingDays"
+            :rules="[(v) => !!v || 'This field is required']"
+            variant="outlined"
+            class="mb-4"
+            placeholder="e.g., 3 days"
+            color="blue"
+          ></v-select>
+
+          <div class="d-flex justify-space-between">
+            <v-btn
+              color="#001f3f"
+              class="mt-5"
+              rounded
+              elevation="16"
+              @click="$router.back()"
+            >
+              <v-icon size="20">mdi-arrow-left-box</v-icon>Back
             </v-btn>
-
-            <v-btn color="success" class="mt-5" @click="goNext()">
-              Review Inputs
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-card-text>
+            <v-btn
+              color="#001f3f"
+              class="mt-5"
+              rounded
+              elevation="16"
+              @click="goNext()"
+              >Review <v-icon size="20">mdi-arrow-right-box</v-icon></v-btn
+            >
+          </div>
+        </v-col>
+      </v-row>
     </v-container>
   </v-main>
 </template>
