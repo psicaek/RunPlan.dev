@@ -1,195 +1,191 @@
 <template>
-  <v-main class="gradient-bg">
-    <v-card class="rounded-0">
-      <!-- Title with icons -->
-      <span class="title-runplan text-h">
-        <v-icon size="40">mdi-run</v-icon>
-        <span>Run Plan Generator</span>
-        <v-icon size="40">mdi-run-fast</v-icon>
-      </span>
-      <!-- Subtitle under the title -->
-      <span class="title-runplan2">
-        Create your personalized running plan in minutes!
-      </span>
-    </v-card>
+  <v-card class="rounded-0">
+    <!-- Title with icons -->
+    <span class="title-runplan text-h">
+      <v-icon size="40">mdi-run</v-icon>
+      <span>Run Plan Generator</span>
+      <v-icon size="40">mdi-run-fast</v-icon>
+    </span>
+    <!-- Subtitle under the title -->
+    <span class="title-runplan2">
+      Create your personalized running plan in minutes!
+    </span>
+  </v-card>
 
-    <!-- Title & Subtitle -->
+  <!-- Title & Subtitle -->
 
-    <v-container class="text-center">
-      <v-row class="athlets-card-profile">
-        <v-card
-          color="#bef264"
-          class="athlets-card"
-          prepend-avatar="https://randomuser.me/api/portraits/women/10.jpg"
-          variant="tonal"
-          rounded="pill"
-          border="accent xl"
+  <v-container class="text-center">
+    <v-row class="athlets-card-profile">
+      <v-card
+        color="#bef264"
+        class="athlets-card"
+        prepend-avatar="https://randomuser.me/api/portraits/women/10.jpg"
+        variant="tonal"
+        rounded="xl"
+        border="accent xl"
+        width="700px"
+        height="125px"
+      >
+        <!-- TITLE -->
+        <template #title>
+          <span style="color: #aad95c"> Athletes Profile </span>
+        </template>
+
+        <!-- SUBTITLE -->
+        <template #subtitle>
+          <span style="color: #87ac55">
+            Tell us about your current running level and experience.
+          </span>
+        </template>
+      </v-card>
+    </v-row>
+
+    <v-row class="choosing-fields">
+      <v-col sm="4">
+        <div style="text-align: left; color: #bef264">Experience Level</div>
+        <v-select
+          bg-color="#87ac55"
+          active-color="#bef264"
+          ref="Experience Level"
+          v-model="profile.experienceLevel"
+          :items="experienceLevelOptions"
+          :rules="[(v) => !!v || 'This field is required']"
+          class="mb-4"
+          label="Experience level"
+          placeholder="e.g., 5K, 10K, Half Marathon, Marathon"
+          color="#293344"
+          :list-props="{ bgColor: '#bef264' }"
+          rounded="xl"
+          clearable
+          variant="solo-filled"
+        ></v-select>
+
+        <div
+          style="
+            text-align: left;
+            margin-bottom: 4px;
+            font-weight: 500;
+            color: #bef264;
+          "
         >
-          <!-- TITLE -->
-          <template #title>
-            <span style="color: #aad95c"> Athletes Profile </span>
-          </template>
-
-          <!-- SUBTITLE -->
-          <template #subtitle>
-            <span style="color: #87ac55">
-              Tell us about your current running level and experience.
-            </span>
-          </template>
-        </v-card>
-      </v-row>
-
-      <v-row class="choosing-fields">
-        <v-col sm="4">
-          <div style="text-align: left; color: #bef264">Experience Level</div>
-          <v-select
-            bg-color="#87ac55"
-            active-color="#bef264"
-            ref="Experience Level"
-            v-model="profile.experienceLevel"
-            :items="experienceLevelOptions"
-            :rules="[(v) => !!v || 'This field is required']"
-            class="mb-4"
-            label="Experience level"
-            color="#293344"
-            :list-props="{ bgColor: '#bef264' }"
-            rounded="xl"
-            hide-details
-            clearable
-            variant="solo-filled"
-          ></v-select>
-
-          <div
-            style="
-              text-align: left;
-              margin-bottom: 4px;
-              font-weight: 500;
-              color: #bef264;
-            "
+          Weekly Running Distance
+        </div>
+        <v-text-field
+          v-model="profile.weeklyDistance"
+          label="Weekly Running Distance"
+          ref="weeklyDistanceInputRef"
+          variant="solo-filled"
+          class="mb-4"
+          :rules="[weeklyDistanceRule]"
+          placeholder="e.g., 10 km"
+          suffix="km"
+          :disabled="!profile.experienceLevel"
+          rounded="xl"
+          clearable
+          bg-color="#87ac55"
+        ></v-text-field>
+        <div
+          style="
+            text-align: left;
+            margin-bottom: 4px;
+            font-weight: 500;
+            color: #bef264;
+          "
+        >
+          Longest Run Distance
+        </div>
+        <v-text-field
+          v-model="profile.longestRun"
+          label="Longest Run Distance"
+          variant="solo-filled"
+          class="mb-4"
+          :rules="[
+            (v) => !!v || 'This field is required',
+            (v) => /^[0-9]+$/.test(v) || 'Only numbers are allowed',
+            (v) =>
+              (parseInt(v) >= 5 && parseInt(v) <= 42) ||
+              'Distance must be between 5 and 42',
+          ]"
+          placeholder="e.g., 10 km"
+          suffix="km"
+          rounded="xl"
+          clearable
+          bg-color="#87ac55"
+        ></v-text-field>
+        <div
+          style="
+            text-align: left;
+            margin-bottom: 4px;
+            font-weight: 500;
+            color: #bef264;
+          "
+        >
+          Age
+        </div>
+        <v-text-field
+          v-model="profile.age"
+          label="Age"
+          variant="solo-filled"
+          class="mb-4"
+          :rules="[
+            (v) => !!v || 'This field is required',
+            (v) => /^[0-9]+$/.test(v) || 'Only numbers are allowed',
+            (v) =>
+              (parseInt(v) >= 12 && parseInt(v) <= 65) ||
+              'Age must be between 12 and 65',
+          ]"
+          placeholder="e.g., 25"
+          rounded="xl"
+          clearable
+          bg-color="#87ac55"
+          base-color="#87ac55"
+        ></v-text-field>
+        <div
+          style="
+            text-align: left;
+            margin-bottom: 4px;
+            font-weight: 500;
+            color: #bef264;
+          "
+        >
+          Gender
+        </div>
+        <v-select
+          bg-color="#87ac55"
+          ref="Gender"
+          v-model="profile.gender"
+          :items="genderOptions"
+          :rules="[() => !!profile.gender || 'This field is required']"
+          label="Gender"
+          placeholder="Select..."
+          required
+          :list-props="{ bgColor: '#bef264' }"
+          rounded="xl"
+          clearable
+          variant="solo-filled"
+        ></v-select>
+        <div class="d-flex justify-space-between">
+          <v-btn
+            color="#bef264"
+            class="mt-5"
+            rounded
+            elevation="16"
+            @click="$router.back()"
           >
-            Weekly Running Distance
-          </div>
-          <v-text-field
-            v-model="profile.weeklyDistance"
-            label="Weekly Running Distance"
-            ref="weeklyDistanceInputRef"
-            variant="solo-filled"
-            class="mb-4"
-            :rules="[weeklyDistanceRule]"
-            placeholder="e.g., 10 km"
-            suffix="km"
-            :disabled="!profile.experienceLevel"
-            rounded="xl"
-            hide-details
-            clearable
-            bg-color="#87ac55"
-          ></v-text-field>
-          <div
-            style="
-              text-align: left;
-              margin-bottom: 4px;
-              font-weight: 500;
-              color: #bef264;
-            "
+            <v-icon size="20">mdi-arrow-left-box</v-icon>Back
+          </v-btn>
+          <v-btn
+            color="#bef264"
+            class="mt-5"
+            rounded
+            elevation="16"
+            @click="goNext()"
+            >Next <v-icon size="20">mdi-arrow-right-box</v-icon></v-btn
           >
-            Longest Run Distance
-          </div>
-          <v-text-field
-            v-model="profile.longestRun"
-            label="Longest Run Distance"
-            variant="solo-filled"
-            class="mb-4"
-            :rules="[
-              (v) => !!v || 'This field is required',
-              (v) => /^[0-9]+$/.test(v) || 'Only numbers are allowed',
-              (v) =>
-                (parseInt(v) >= 5 && parseInt(v) <= 42) ||
-                'Distance must be between 5 and 42',
-            ]"
-            placeholder="e.g., 10 km"
-            suffix="km"
-            rounded="xl"
-            hide-details
-            clearable
-            bg-color="#87ac55"
-          ></v-text-field>
-          <div
-            style="
-              text-align: left;
-              margin-bottom: 4px;
-              font-weight: 500;
-              color: #bef264;
-            "
-          >
-            Age
-          </div>
-          <v-text-field
-            v-model="profile.age"
-            label="Age"
-            variant="solo-filled"
-            class="mb-4"
-            :rules="[
-              (v) => !!v || 'This field is required',
-              (v) => /^[0-9]+$/.test(v) || 'Only numbers are allowed',
-              (v) =>
-                (parseInt(v) >= 12 && parseInt(v) <= 65) ||
-                'Age must be between 12 and 65',
-            ]"
-            placeholder="e.g., 25"
-            rounded="xl"
-            hide-details
-            clearable
-            bg-color="#87ac55"
-            base-color="#87ac55"
-          ></v-text-field>
-          <div
-            style="
-              text-align: left;
-              margin-bottom: 4px;
-              font-weight: 500;
-              color: #bef264;
-            "
-          >
-            Gender
-          </div>
-          <v-select
-            bg-color="#87ac55"
-            ref="Gender"
-            v-model="profile.gender"
-            :items="genderOptions"
-            :rules="[() => !!profile.gender || 'This field is required']"
-            label="Gender"
-            placeholder="Select..."
-            required
-            :list-props="{ bgColor: '#bef264' }"
-            rounded="xl"
-            hide-details
-            clearable
-            variant="solo-filled"
-          ></v-select>
-          <div class="d-flex justify-space-between">
-            <v-btn
-              color="#bef264"
-              class="mt-5"
-              rounded
-              elevation="16"
-              @click="$router.back()"
-            >
-              <v-icon size="20">mdi-arrow-left-box</v-icon>Back
-            </v-btn>
-            <v-btn
-              color="#bef264"
-              class="mt-5"
-              rounded
-              elevation="16"
-              @click="goNext()"
-              >Next <v-icon size="20">mdi-arrow-right-box</v-icon></v-btn
-            >
-          </div>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-main>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script setup lang="ts">

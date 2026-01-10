@@ -35,15 +35,17 @@
 
 .athlets-card .v-card-title {
   font-size: xx-large;
-  color: #bef264;
+  color: #87ac55;
   justify-content: center;
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .athlets-card .v-card-subtitle {
+  display: flex;
   font-size: medium;
   font-weight: bolder;
+  justify-content: center !important;
 }
 
 .athlets-card .v-avatar {
@@ -52,7 +54,9 @@
 }
 
 .result-card {
-  background: transparent !important;
+  border-radius: 45px !important;
+
+  background-color: #87ac55 !important;
 }
 
 .choosing-fields {
@@ -69,6 +73,11 @@
   flex-direction: column; /* flex-column */
   align-items: center; /* align-center */
   text-align: center; /* text-center */
+}
+
+.review {
+  display: flex;
+  margin-top: 10px;
 }
 /* ================================
    PRIMARY ACCENT — NEON GREEN

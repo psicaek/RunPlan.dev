@@ -70,8 +70,9 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-
-    <router-view></router-view>
+    <v-main class="gradient-bg">
+      <router-view></router-view>
+    </v-main>
   </v-app>
 </template>
 
