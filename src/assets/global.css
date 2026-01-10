@@ -1,31 +1,41 @@
 .gradient-bg {
   min-height: 100vh;
-  background: linear-gradient(135deg, #00b4db, #01526d);
+  background: linear-gradient(135deg, #1e293b, #1e293b);
   color: rgb(0, 0, 0);
 }
 .title-runplan {
   display: flex;
-  background-color: #001f3f;
+  background-color: #bef264;
   justify-content: space-between;
-  color: #f3ebeb;
+  color: #1e293b;
+  font-weight: bold;
+  font-size: larger;
 }
 .title-runplan2 {
   display: flex;
-  background-color: #001f3f;
-  color: #f3ebeb;
+  background-color: #bef264;
+  color: #1e293b;
   justify-content: center;
+  font-weight: bold;
 }
 
 .avantar {
   display: flex;
   justify-content: center;
 }
+
 .athlets-card {
-  background: transparent !important;
+  color: #270b03;
 }
+.athlets-card-profile {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 25px !important;
+}
+
 .athlets-card .v-card-title {
   font-size: xx-large;
-  color: #001f3f;
+  color: #bef264;
   justify-content: center;
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
@@ -59,4 +69,82 @@
   flex-direction: column; /* flex-column */
   align-items: center; /* align-center */
   text-align: center; /* text-center */
+}
+/* ================================
+   PRIMARY ACCENT — NEON GREEN
+   ================================ */
+.green-main {
+  color: #bef264;
+}
+
+.green-soft {
+  color: #aad95c;
+}
+
+.green-muted {
+  color: #87ac55;
+}
+
+.green-dark {
+  color: #66824d;
+}
+
+/* ================================
+   DARK BACKGROUNDS
+   ================================ */
+.bg-dark-900 {
+  color: #0d1529;
+}
+
+.bg-dark-800 {
+  color: #1e283a;
+}
+
+.bg-dark-700 {
+  color: #293344;
+}
+
+.bg-dark-600 {
+  color: #363e4a;
+}
+
+/* ================================
+   CARD / SURFACE COLORS
+   ================================ */
+.card-bg {
+  color: #293344;
+}
+
+.card-bg-soft {
+  color: #363e4a;
+}
+
+.card-bg-hover {
+  color: #43494d;
+}
+
+/* ================================
+   TEXT COLORS
+   ================================ */
+.text-primary {
+  color: #ffffff;
+}
+
+.text-muted {
+  color: #c3c5c5;
+}
+
+.text-soft {
+  color: #6f7577;
+}
+
+/* ================================
+   STATUS / HIGHLIGHTS
+   ================================ */
+.status-active {
+  color: #aad95c;
+}
+
+.status-success {
+  color: #bef264;
 }

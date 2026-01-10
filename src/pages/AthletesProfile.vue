@@ -16,21 +16,23 @@
     <!-- Title & Subtitle -->
 
     <v-container class="text-center">
-      <v-row style="display: flex" justify="center">
+      <v-row class="athlets-card-profile">
         <v-card
+          color="#bef264"
           class="athlets-card"
           prepend-avatar="https://randomuser.me/api/portraits/women/10.jpg"
-          variant="elevated"
-          elevation="7"
+          variant="tonal"
+          rounded="pill"
+          border="accent xl"
         >
           <!-- TITLE -->
           <template #title>
-            <span> Athletes Profile </span>
+            <span style="color: #aad95c"> Athletes Profile </span>
           </template>
 
           <!-- SUBTITLE -->
           <template #subtitle>
-            <span style="color: #001f3f">
+            <span style="color: #87ac55">
               Tell us about your current running level and experience.
             </span>
           </template>
@@ -39,42 +41,63 @@
 
       <v-row class="choosing-fields">
         <v-col sm="4">
-          <div style="text-align: left; margin-bottom: 4px; font-weight: 500">
-            Experience Level
-          </div>
+          <div style="text-align: left; color: #bef264">Experience Level</div>
           <v-select
+            bg-color="#87ac55"
+            active-color="#bef264"
             ref="Experience Level"
             v-model="profile.experienceLevel"
             :items="experienceLevelOptions"
             :rules="[(v) => !!v || 'This field is required']"
             class="mb-4"
-            placeholder="e.g., Beginner, Intermediate, Advanced"
-            color="blue"
-            :list-props="{ bgColor: '#001f3f' }"
+            label="Experience level"
+            color="#293344"
+            :list-props="{ bgColor: '#bef264' }"
+            rounded="xl"
+            hide-details
+            clearable
+            variant="solo-filled"
           ></v-select>
 
-          <div style="text-align: left; margin-bottom: 4px; font-weight: 500">
+          <div
+            style="
+              text-align: left;
+              margin-bottom: 4px;
+              font-weight: 500;
+              color: #bef264;
+            "
+          >
             Weekly Running Distance
           </div>
           <v-text-field
             v-model="profile.weeklyDistance"
             label="Weekly Running Distance"
             ref="weeklyDistanceInputRef"
-            variant="outlined"
+            variant="solo-filled"
             class="mb-4"
             :rules="[weeklyDistanceRule]"
             placeholder="e.g., 10 km"
-            color="#001f3f"
             suffix="km"
             :disabled="!profile.experienceLevel"
+            rounded="xl"
+            hide-details
+            clearable
+            bg-color="#87ac55"
           ></v-text-field>
-          <div style="text-align: left; margin-bottom: 4px; font-weight: 500">
+          <div
+            style="
+              text-align: left;
+              margin-bottom: 4px;
+              font-weight: 500;
+              color: #bef264;
+            "
+          >
             Longest Run Distance
           </div>
           <v-text-field
             v-model="profile.longestRun"
             label="Longest Run Distance"
-            variant="outlined"
+            variant="solo-filled"
             class="mb-4"
             :rules="[
               (v) => !!v || 'This field is required',
@@ -84,16 +107,26 @@
                 'Distance must be between 5 and 42',
             ]"
             placeholder="e.g., 10 km"
-            color="#001f3f"
             suffix="km"
+            rounded="xl"
+            hide-details
+            clearable
+            bg-color="#87ac55"
           ></v-text-field>
-          <div style="text-align: left; margin-bottom: 4px; font-weight: 500">
+          <div
+            style="
+              text-align: left;
+              margin-bottom: 4px;
+              font-weight: 500;
+              color: #bef264;
+            "
+          >
             Age
           </div>
           <v-text-field
             v-model="profile.age"
             label="Age"
-            variant="outlined"
+            variant="solo-filled"
             class="mb-4"
             :rules="[
               (v) => !!v || 'This field is required',
@@ -103,12 +136,24 @@
                 'Age must be between 12 and 65',
             ]"
             placeholder="e.g., 25"
-            color="#001f3f"
+            rounded="xl"
+            hide-details
+            clearable
+            bg-color="#87ac55"
+            base-color="#87ac55"
           ></v-text-field>
-          <div style="text-align: left; margin-bottom: 4px; font-weight: 500">
+          <div
+            style="
+              text-align: left;
+              margin-bottom: 4px;
+              font-weight: 500;
+              color: #bef264;
+            "
+          >
             Gender
           </div>
           <v-select
+            bg-color="#87ac55"
             ref="Gender"
             v-model="profile.gender"
             :items="genderOptions"
@@ -116,12 +161,15 @@
             label="Gender"
             placeholder="Select..."
             required
-            color="#001f3f"
-            :list-props="{ bgColor: '#001f3f' }"
+            :list-props="{ bgColor: '#bef264' }"
+            rounded="xl"
+            hide-details
+            clearable
+            variant="solo-filled"
           ></v-select>
           <div class="d-flex justify-space-between">
             <v-btn
-              color="#001f3f"
+              color="#bef264"
               class="mt-5"
               rounded
               elevation="16"
@@ -130,7 +178,7 @@
               <v-icon size="20">mdi-arrow-left-box</v-icon>Back
             </v-btn>
             <v-btn
-              color="#001f3f"
+              color="#bef264"
               class="mt-5"
               rounded
               elevation="16"
