@@ -4,7 +4,7 @@ import About from "../pages/About.vue";
 import AthletesProfile from "../pages/AthletesProfile.vue";
 import TrainingGoal from "../pages/TrainingGoal.vue";
 import Review from "../pages/Review.vue";
-
+import Info from "../pages/info.vue";
 import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
 
 import Result from "../pages/Result.vue";
@@ -20,6 +20,7 @@ const routes = [
   { path: "/TrainingGoal", name: "TrainingGoal", component: TrainingGoal },
   { path: "/review", name: "Review", component: Review },
   { path: "/Result", name: "Result", component: Result },
+  { path: "/Info", name: "Info", component: Info },
 ];
 
 const router = createRouter({

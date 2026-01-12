@@ -82,7 +82,7 @@
           label="Goal Time"
           variant="solo-filled"
           class="mb-4"
-          placeholder="Enter time in minutes (20-300)"
+          placeholder="Enter time in minutes (14-300)"
           color="#293344"
           type="text"
           min="14"
@@ -99,6 +99,37 @@
           bg-color="#87ac55"
         ></v-text-field>
 
+        <div
+          style="
+            text-align: left;
+            margin-bottom: 4px;
+            font-weight: 500;
+            color: #bef264;
+          "
+        >
+          Personal Best
+        </div>
+        <v-text-field
+          v-model="goal.personalBest"
+          label="Personal Best"
+          variant="solo-filled"
+          class="mb-4"
+          placeholder="Enter time in minutes (20-300)"
+          color="#293344"
+          type="text"
+          min="14"
+          max="300"
+          :rules="[
+            (v) => !!v || 'This field is required',
+            (v) => /^[0-9]+$/.test(v) || 'Only numbers are allowed',
+            (v) =>
+              (parseInt(v) >= 14 && parseInt(v) <= 300) ||
+              'Goal Time must be between 14 and 200 minutes',
+          ]"
+          clearable
+          rounded="xl"
+          bg-color="#87ac55"
+        ></v-text-field>
         <div
           style="
             text-align: left;

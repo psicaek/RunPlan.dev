@@ -79,6 +79,9 @@
   display: flex;
   margin-top: 10px;
 }
+.infocard {
+  color: #270b03;
+}
 /* ================================
    PRIMARY ACCENT — NEON GREEN
    ================================ */

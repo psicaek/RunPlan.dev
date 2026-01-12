@@ -20,6 +20,7 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
       goalTime: (0 as number) || null, // σε λεπτά
       targetDate: null as Date | null,
       trainingDays: "" as string,
+      personalBest: (0 as number) || null,
     },
 
     // ⚙️ Generation State
@@ -47,10 +48,12 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
         goalTime: g.goalTime,
         trainingDays: g.trainingDays,
         targetDate: g.targetDate,
+        personalBest: g.personalBest,
       });
       return (
         g.raceDistance.trim() !== "" &&
         g.goalTime > 0 &&
+        g.personalBest > 0 &&
         g.trainingDays.trim() !== "" &&
         g.targetDate instanceof Date &&
         !isNaN(g.targetDate.getTime())
@@ -72,6 +75,7 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
         goalTime: 0,
         targetDate: null,
         trainingDays: "",
+        peronalBest: 0,
       };
     },
 
@@ -116,6 +120,7 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
             goalTime: this.goal.goalTime || 0,
             targetDate: targetDateStr,
             trainingDays: this.goal.trainingDays,
+            personalBest: this.goal.personalBest,
           },
         };
 

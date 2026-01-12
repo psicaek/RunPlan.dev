@@ -68,6 +68,16 @@
             >
           </template>
         </v-list-item>
+        <v-list-item to="/Info" style="color: #1e293b">
+          <template #prepend>
+            <v-icon size="32">mdi-information</v-icon>
+          </template>
+          <template #title>
+            <span style="font-size: larger; font-weight: bold; color: #1e293b"
+              >Info</span
+            >
+          </template>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-main class="gradient-bg">

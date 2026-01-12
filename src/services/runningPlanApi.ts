@@ -13,6 +13,7 @@ export interface RunningPlanRequest {
     goalTime: number;
     targetDate: string; // Format: "YYYY-MM-DD"
     trainingDays: string;
+    personalBest: number;
   };
 }
 
