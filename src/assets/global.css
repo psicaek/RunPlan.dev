@@ -79,8 +79,35 @@
   display: flex;
   margin-top: 10px;
 }
-.infocard {
-  color: #270b03;
+.info-card{
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 25px !important;
+  height: fit-content;
+
+}
+.info-card .v-card-title {
+  font-size: x-large;
+  color: #aad95c;
+  justify-content: center;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.info-card .v-card-subtitle {
+  font-size: small;
+  color: #aad95c;
+  justify-content: center;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  text-wrap:initial;
+}
+.info-card .v-card-text {
+  font-size: x-small;
+  color: #aad95c;
+  justify-content: center;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+
 }
 /* ================================
    PRIMARY ACCENT — NEON GREEN

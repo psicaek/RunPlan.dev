@@ -23,10 +23,10 @@
         border="accent xl"
         width="700px"
         height="125px"
-      >
+      > 
         <!-- TITLE -->
         <template #title>
-          <span style="color: #aad95c"> Training Goal </span>
+          <span style="color: #aad95c"> Info</span>
         </template>
 
         <!-- SUBTITLE -->
@@ -39,100 +39,120 @@
     </v-row>
   </v-container>
 
-  <v-row>
-    <v-col>
+  <v-row class="text-center">
+    <v-col class="info-card">
       <v-card
+        color="#bef264"
+        variant="tonal"
         
+        border="accent xl"
+        rounded="xl"
         class="infocard"
-        subtitle="Choose the level that best represents your current running background"
+
         text="Your experience level helps us understand how much training your body can safely handle. Each level corresponds to a typical weekly running distance range. Beginners usually run between 5 and 15 kilometers per week and are either new to running or returning after a long break. Intermediate runners typically cover 10 to 25 kilometers weekly and have already built a consistent routine. Advanced runners train regularly with structured workouts and usually run between 20 and 50 kilometers per week. Expert runners handle higher training loads, generally between 40 and 80 kilometers weekly, while elite runners train at a competitive level with weekly distances ranging from 70 up to 150 kilometers. Selecting the correct experience level is important to ensure safe progression and reduce the risk of injury."
         title="Experience Level"
-      ></v-card>
+      >
+    <template #subtitle>
+          <span class="info-card .v-card-subtitle">
+            Choose the level that best represents your current running background
+          </span>
+        </template></v-card>
     </v-col>
 
-    <v-col>
+    <v-col class="info-card">
       <v-card
-        class="infocard" subtitle="Choose the level that best represents your
-        current running background" text="Your experience level helps us
-        understand how much training your body can safely handle. Each level
-        corresponds to a typical weekly running distance range. Beginners
-        usually run between 5 and 15 kilometers per week and are either new to
-        running or returning after a long break. Intermediate runners typically
-        cover 10 to 25 kilometers weekly and have already built a consistent
-        routine. Advanced runners train regularly with structured workouts and
-        usually run between 20 and 50 kilometers per week. Expert runners handle
-        higher training loads, generally between 40 and 80 kilometers weekly,
-        while elite runners train at a competitive level with weekly distances
-        ranging from 70 up to 150 kilometers. Selecting the correct experience
-        level is important to ensure safe progression and reduce the risk of
-        injury." title="Experience Level"
-      </v-card>
+        color="#bef264"
+        variant="tonal"
+        
+        border="accent xl"
+        rounded="xl"
+        class="infocard"
+
+        text="Your experience level helps us understand how much training your body can safely handle. Each level corresponds to a typical weekly running distance range. Beginners usually run between 5 and 15 kilometers per week and are either new to running or returning after a long break. Intermediate runners typically cover 10 to 25 kilometers weekly and have already built a consistent routine. Advanced runners train regularly with structured workouts and usually run between 20 and 50 kilometers per week. Expert runners handle higher training loads, generally between 40 and 80 kilometers weekly, while elite runners train at a competitive level with weekly distances ranging from 70 up to 150 kilometers. Selecting the correct experience level is important to ensure safe progression and reduce the risk of injury."
+        title="Experience Level"
+      >
+    <template #subtitle>
+          <span class="info-card .v-card-subtitle">
+            Choose the level that best represents your current running background
+          </span>
+        </template></v-card>
     </v-col>
 
-    <v-col>
+    <v-col class="info-card">
       <v-card
-        class="infocard" subtitle="Choose the level that best represents your
-        current running background" text="Your experience level helps us
-        understand how much training your body can safely handle. Each level
-        corresponds to a typical weekly running distance range. Beginners
-        usually run between 5 and 15 kilometers per week and are either new to
-        running or returning after a long break. Intermediate runners typically
-        cover 10 to 25 kilometers weekly and have already built a consistent
-        routine. Advanced runners train regularly with structured workouts and
-        usually run between 20 and 50 kilometers per week. Expert runners handle
-        higher training loads, generally between 40 and 80 kilometers weekly,
-        while elite runners train at a competitive level with weekly distances
-        ranging from 70 up to 150 kilometers. Selecting the correct experience
-        level is important to ensure safe progression and reduce the risk of
-        injury." title="Experience Level"
-      </v-card>
+        color="#bef264"
+        variant="tonal"
+        
+        border="accent xl"
+        rounded="xl"
+        class="infocard"
+
+        text="Your experience level helps us understand how much training your body can safely handle. Each level corresponds to a typical weekly running distance range. Beginners usually run between 5 and 15 kilometers per week and are either new to running or returning after a long break. Intermediate runners typically cover 10 to 25 kilometers weekly and have already built a consistent routine. Advanced runners train regularly with structured workouts and usually run between 20 and 50 kilometers per week. Expert runners handle higher training loads, generally between 40 and 80 kilometers weekly, while elite runners train at a competitive level with weekly distances ranging from 70 up to 150 kilometers. Selecting the correct experience level is important to ensure safe progression and reduce the risk of injury."
+        title="Experience Level"
+      >
+    <template #subtitle>
+          <span class="info-card .v-card-subtitle">
+            Choose the level that best represents your current running background
+          </span>
+        </template></v-card>
     </v-col>
   </v-row>
-  <v-row>
-    <v-col>
+  <v-row class="text-center">
+    <v-col class="info-card">
       <v-card
-        subtitle="Choose the level that best represents your current running background"
+        color="#bef264"
+        variant="tonal"
+        
+        border="accent xl"
+        rounded="xl"
+        class="infocard"
+
         text="Your experience level helps us understand how much training your body can safely handle. Each level corresponds to a typical weekly running distance range. Beginners usually run between 5 and 15 kilometers per week and are either new to running or returning after a long break. Intermediate runners typically cover 10 to 25 kilometers weekly and have already built a consistent routine. Advanced runners train regularly with structured workouts and usually run between 20 and 50 kilometers per week. Expert runners handle higher training loads, generally between 40 and 80 kilometers weekly, while elite runners train at a competitive level with weekly distances ranging from 70 up to 150 kilometers. Selecting the correct experience level is important to ensure safe progression and reduce the risk of injury."
         title="Experience Level"
-      ></v-card>
+      >
+    <template #subtitle>
+          <span class="info-card .v-card-subtitle">
+            Choose the level that best represents your current running background
+          </span>
+        </template></v-card>
     </v-col>
 
-    <v-col>
+    <v-col class="info-card">
       <v-card
-       class="infocard" subtitle="Choose the level that best represents your
-        current running background" text="Your experience level helps us
-        understand how much training your body can safely handle. Each level
-        corresponds to a typical weekly running distance range. Beginners
-        usually run between 5 and 15 kilometers per week and are either new to
-        running or returning after a long break. Intermediate runners typically
-        cover 10 to 25 kilometers weekly and have already built a consistent
-        routine. Advanced runners train regularly with structured workouts and
-        usually run between 20 and 50 kilometers per week. Expert runners handle
-        higher training loads, generally between 40 and 80 kilometers weekly,
-        while elite runners train at a competitive level with weekly distances
-        ranging from 70 up to 150 kilometers. Selecting the correct experience
-        level is important to ensure safe progression and reduce the risk of
-        injury." title="Experience Level"
-      </v-card>
+        color="#bef264"
+        variant="tonal"
+        
+        border="accent xl"
+        rounded="xl"
+        class="infocard"
+
+        text="Your experience level helps us understand how much training your body can safely handle. Each level corresponds to a typical weekly running distance range. Beginners usually run between 5 and 15 kilometers per week and are either new to running or returning after a long break. Intermediate runners typically cover 10 to 25 kilometers weekly and have already built a consistent routine. Advanced runners train regularly with structured workouts and usually run between 20 and 50 kilometers per week. Expert runners handle higher training loads, generally between 40 and 80 kilometers weekly, while elite runners train at a competitive level with weekly distances ranging from 70 up to 150 kilometers. Selecting the correct experience level is important to ensure safe progression and reduce the risk of injury."
+        title="Experience Level"
+      >
+    <template #subtitle>
+          <span class="info-card .v-card-subtitle">
+            Choose the level that best represents your current running background
+          </span>
+        </template></v-card>
     </v-col>
 
-    <v-col>
+    <v-col class="info-card">
       <v-card
-        class="infocard" subtitle="Choose the level that best represents your
-        current running background" text="Your experience level helps us
-        understand how much training your body can safely handle. Each level
-        corresponds to a typical weekly running distance range. Beginners
-        usually run between 5 and 15 kilometers per week and are either new to
-        running or returning after a long break. Intermediate runners typically
-        cover 10 to 25 kilometers weekly and have already built a consistent
-        routine. Advanced runners train regularly with structured workouts and
-        usually run between 20 and 50 kilometers per week. Expert runners handle
-        higher training loads, generally between 40 and 80 kilometers weekly,
-        while elite runners train at a competitive level with weekly distances
-        ranging from 70 up to 150 kilometers. Selecting the correct experience
-        level is important to ensure safe progression and reduce the risk of
-        injury." title="Experience Level"
-      </v-card>
+        color="#bef264"
+        variant="tonal"
+        
+        border="accent xl"
+        rounded="xl"
+        class="infocard"
+
+        text="Your experience level helps us understand how much training your body can safely handle. Each level corresponds to a typical weekly running distance range. Beginners usually run between 5 and 15 kilometers per week and are either new to running or returning after a long break. Intermediate runners typically cover 10 to 25 kilometers weekly and have already built a consistent routine. Advanced runners train regularly with structured workouts and usually run between 20 and 50 kilometers per week. Expert runners handle higher training loads, generally between 40 and 80 kilometers weekly, while elite runners train at a competitive level with weekly distances ranging from 70 up to 150 kilometers. Selecting the correct experience level is important to ensure safe progression and reduce the risk of injury."
+        title="Experience Level"
+      >
+    <template #subtitle>
+          <span class="info-card .v-card-subtitle">
+            Choose the level that best represents your current running background
+          </span>
+        </template></v-card>
     </v-col>
   </v-row>
 </template>
