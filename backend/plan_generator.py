@@ -3,7 +3,7 @@ from datetime import datetime
 
 def generate_plan_logic(profile, goal):
 
-    experiencelevel = profile.experienceLevel
+    experienceLevel = profile.experienceLevel
     weeklydistance = profile.weeklyDistance
     longestrun = profile.longestRun
     age = profile.age
@@ -11,15 +11,20 @@ def generate_plan_logic(profile, goal):
     goaltime = goal.goalTime
     targetdate = goal.targetDate
     trainingdays = goal.trainingDays  
+    personalBest = goal.personalBest
+
+
 
     weeks_until = calculate_weeks_until(targetdate)
     pace = calculate_pace(goaltime, race_distance)
-    weekly_type_of_runs = calculate_weekly_type_of_runs(trainingdays)           
-    weekly_mileage = calculate_weekly_mileage(weeklydistance,race_distance, weeks_until,experiencelevel)
+    weekly_type_of_runs = calculate_weekly_type_of_runs(trainingdays)        
+    calc_max_volume = calculate_max_volume(experienceLevel,age)   
+    weekly_mileage = calculate_weekly_mileage(weeklydistance,race_distance, weeks_until, calc_max_volume,experienceLevel)
     run_per_type = calculate_run_per_type(weekly_mileage,weekly_type_of_runs,trainingdays)
     print(weeks_until)
     print(pace)
     print(weekly_type_of_runs)
+    print(calc_max_volume)
     print(weekly_mileage)
     print(run_per_type)
 
@@ -95,12 +100,35 @@ def calculate_weekly_type_of_runs(training_days):
 
 
 
+def calculate_max_volume(experienceLevel,age):
+    
+    base_level = 0
+    agefactor = age 
+
+    if agefactor > 35:
+        base_level +=0.9
+    else:
+        base_level = 1
 
 
+    if experienceLevel == "Beginner":
+        max_volume = 50 * base_level
+    elif experienceLevel == "Intermediate":
+        max_volume = 65 * base_level
+    elif experienceLevel == "Advanced":
+        max_volume = 80 * base_level    
+    elif experienceLevel == "Expert":
+        max_volume = 100 * base_level
+    elif experienceLevel == "Elite":
+        max_volume = 150 * base_level
 
-def calculate_weekly_mileage(weekly_distance,race_distance, weeks_until,experiencelevel):
+    return max_volume    
+
+def calculate_weekly_mileage(weekly_distance,race_distance, weeks_until, max_volume, experiencelevel):
     mileage_plan = []
     current = weekly_distance
+    
+    
 
     if experiencelevel == "Beginner":
         if race_distance == "5K":
@@ -168,6 +196,7 @@ def calculate_weekly_mileage(weekly_distance,race_distance, weeks_until,experien
             current *= 0.5  # taper phase
 
         current = round(current, 1)
+        current = min(current, max_volume)
         mileage_plan.append(current)
 
     return mileage_plan      
@@ -240,3 +269,4 @@ def calculate_run_per_type(mileage_plan,type_of_runs,trainingdays):
             runs_per_week.append(week_runs)                
     return runs_per_week
     
+ 

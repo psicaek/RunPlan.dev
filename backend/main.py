@@ -34,6 +34,7 @@ class Goal(BaseModel):
     goalTime: float
     targetDate: str
     trainingDays: str
+    personalBest:float
 
 class RunningPlanRequest(BaseModel):
     profile: Profile
