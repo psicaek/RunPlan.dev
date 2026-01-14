@@ -127,7 +127,7 @@ def calculate_max_volume(experienceLevel,age):
 def calculate_weekly_mileage(weekly_distance,race_distance, weeks_until, max_volume, experiencelevel):
     mileage_plan = []
     current = weekly_distance
-    
+    deload_variable=0
     
 
     if experiencelevel == "Beginner":
@@ -184,16 +184,42 @@ def calculate_weekly_mileage(weekly_distance,race_distance, weeks_until, max_vol
     for week in range(weeks_until):
     # Determine number of taper weeks
         taper_weeks = 2 if weeks_until > 12 else max(1, round(weeks_until * 0.1))
-
+       
         progress = week + 1
+        
+        
+        istaper = progress > weeks_until - taper_weeks
+        is_normal = progress / weeks_until < 0.7 and not istaper
+        is_build = progress/ weeks_until > 0.7 and not istaper
+        deload_week = (progress % 4 == 0) and not istaper
 
-        if progress <= weeks_until - taper_weeks:  # first weeks_before_taper
-            if progress / weeks_until < 0.7:
-                current *= 1.08  # base phase
+        if (is_normal or is_build) and deload_week:
+            deload_variable=current
+            current *=0.92
+            print("deload")
+            print(deload_variable)
+        elif is_normal:  # first weeks_before_taper
+            print(deload_variable)
+            if deload_variable> 0:
+                current = deload_variable * 1.08
+                deload_variable = 0
             else:
-                current *= 1.12  # build phase
-        else:
-            current *= 0.5  # taper phase
+               current *= 1.08    
+            print("normal")
+            
+        elif is_build:
+            print(deload_variable)
+            if deload_variable> 0:
+                current = deload_variable * 1.12
+                deload_variable = 0
+            else:
+               current *= 1.12   
+            print("build")
+            
+        elif istaper:
+            current*= 0.5 
+            print("taper")    
+            print(deload_variable)      
 
         current = round(current, 1)
         current = min(current, max_volume)

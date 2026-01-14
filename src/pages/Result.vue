@@ -65,7 +65,7 @@ const store = useRunnerProfileStore();
 const { trainingPlan: plan, isGenerating } = storeToRefs(store); // 👈 Αυτό είναι το σωστό reactive binding
 
 onMounted(() => {
-  if (plan.value) {
+  if (!plan.value) {
     store.generateTrainingPlan();
   }
 });
