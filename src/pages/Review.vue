@@ -105,39 +105,36 @@
       </v-row>
       <v-col align="center" style="margin-top: 25px">
         <v-list-item class="review">
-          <v-list-item-content>
-            <v-list-item-title>Race Distance:</v-list-item-title>
-            <v-list-item-subtitle>{{
-              goal.raceDistance || "-"
-            }}</v-list-item-subtitle>
-          </v-list-item-content>
+          <
+          <v-list-item-title>Race Distance:</v-list-item-title>
+          <v-list-item-subtitle>{{
+            goal.raceDistance || "-"
+          }}</v-list-item-subtitle>
         </v-list-item>
 
         <v-list-item class="review">
-          <v-list-item-content>
-            <v-list-item-title>Goal Time:</v-list-item-title>
-            <v-list-item-subtitle
-              >{{ goal.goalTime }} minutes</v-list-item-subtitle
-            >
-          </v-list-item-content>
+          <v-list-item-title>Goal Time:</v-list-item-title>
+          <v-list-item-subtitle
+            >{{ goal.goalTime }} minutes</v-list-item-subtitle
+          >
+        </v-list-item>
+        <v-list-item class="review">
+          <v-list-item-title>Personal Best:</v-list-item-title>
+          <v-list-item-subtitle
+            >{{ goal.personalBest }} minutes</v-list-item-subtitle
+          >
         </v-list-item>
 
         <v-list-item class="review">
-          <v-list-item-content>
-            <v-list-item-title>Target Date:</v-list-item-title>
-            <v-list-item-subtitle>{{
-              formattedTargetDate
-            }}</v-list-item-subtitle>
-          </v-list-item-content>
+          <v-list-item-title>Target Date:</v-list-item-title>
+          <v-list-item-subtitle>{{ formattedTargetDate }}</v-list-item-subtitle>
         </v-list-item>
 
         <v-list-item class="review">
-          <v-list-item-content>
-            <v-list-item-title>Training Days Per Week:</v-list-item-title>
-            <v-list-item-subtitle>{{
-              goal.trainingDays || "-"
-            }}</v-list-item-subtitle>
-          </v-list-item-content>
+          <v-list-item-title>Training Days Per Week:</v-list-item-title>
+          <v-list-item-subtitle>{{
+            goal.trainingDays || "-"
+          }}</v-list-item-subtitle>
         </v-list-item>
       </v-col>
     </v-card>

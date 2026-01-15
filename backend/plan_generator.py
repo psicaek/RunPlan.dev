@@ -51,8 +51,9 @@ def generate_plan_logic(profile, goal):
 
     return {
         "weeks_until": weeks_until,
-        "pace": format_pace(run_pace_seconds),
-        "weeks": weeks
+        "pace": format_pace(pace),
+        "weeks": weeks,
+        "type_of_runs":weekly_type_of_runs
     }
    
 
