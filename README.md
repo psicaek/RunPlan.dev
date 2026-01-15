@@ -45,24 +45,22 @@ The frontend collects user input, and the backend processes it into a structured
 
 ## 📁 Project Structure
 
-project-root/  
-│  
+project-root/
 ├── src/
-│ ├── assets
-│ ├──components
-│ ├── pages
-│ ├── router
-│ ├── services
+│ ├── assets/
+│ ├── components/
+│ ├── pages/
+│ ├── router/
+│ ├── services/
 │ ├── App.vue
-│ ├── main.js
-│ ├── services
-│  
-├── backend/  
-│ ├── main.py  
+│ └── main.js
+│
+├── backend/
+│ ├── main.py
 │ ├── plan_generator.py
-│ ├── test_plan_generator.py  
-│ └── requirements.txt  
-│  
+│ ├── test_plan_generator.py
+│ └── requirements.txt
+│
 └── README.md
 
 ---
