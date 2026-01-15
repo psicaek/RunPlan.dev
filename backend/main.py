@@ -84,6 +84,6 @@ async def generate_plan(request: RunningPlanRequest):
 if __name__ == "__main__":
     import uvicorn
     print("\n🚀 Starting Running Plan API Server...")
-    print("📍 Server running at: http://localhost:8000")
-    print("📝 API docs at: http://localhost:8000/docs\n")
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    print("📍 Server running at: http://localhost:8001")
+    print("📝 API docs at: http://localhost:8001/docs\n")
+    uvicorn.run(app, host="0.0.0.0", port=8001)

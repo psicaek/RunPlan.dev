@@ -97,7 +97,7 @@ export const useRunnerProfileStore = defineStore("runnerProfile", {
         const isHealthy = await runningPlanApi.healthCheck();
         if (!isHealthy) {
           throw new Error(
-            "Backend is not running. Please start the Python server at http://localhost:8000"
+            "Backend is not running. Please start the Python server at http://192.168.178.101:8001"
           );
         }
 
