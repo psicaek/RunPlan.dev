@@ -1,4 +1,4 @@
-# 🏃 Running Plan Generator
+# 🏃 Run Plan Generator
 
 A full-stack web application that generates personalized running training plans based on runner profiles and race goals.
 
