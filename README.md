@@ -46,6 +46,7 @@ The frontend collects user input, and the backend processes it into a structured
 ## 📁 Project Structure
 
 project-root/
+│
 ├── src/
 │ ├── assets/
 │ ├── components/
