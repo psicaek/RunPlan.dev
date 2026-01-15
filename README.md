@@ -47,14 +47,20 @@ The frontend collects user input, and the backend processes it into a structured
 
 project-root/  
 │  
-├── frontend/  
-│ ├── src/  
-│ ├── package.json  
+├── src/
+│ ├── assets
+│ ├──components
+│ ├── pages
+│ ├── router
+│ ├── services
+│ ├── App.vue
+│ ├── main.js
+│ ├── services
 │  
 ├── backend/  
 │ ├── main.py  
-│ ├── models.py  
-│ ├── logic/  
+│ ├── plan_generator.py
+│ ├── test_plan_generator.py  
 │ └── requirements.txt  
 │  
 └── README.md
@@ -75,8 +81,8 @@ project-root/
 3. Install dependencies  
    `pip install -r requirements.txt`
 
-4. Start the FastAPI server  
-   `uvicorn main:app --reload`
+4. Start the Main  
+   `python main.py`
 
 Backend runs at:  
 http://127.0.0.1:8000
@@ -109,7 +115,7 @@ Example Request Body:
 
 {
 "profile": {
-"experienceLevel": "Intermediate",
+"experienceLevel": "Advance",
 "weeklyDistance": 30,
 "longestRun": 12,
 "age": 33,
@@ -120,6 +126,7 @@ Example Request Body:
 "goalTime": 105,
 "targetDate": "2026-05-22",
 "trainingDays": "4"
+"PersonalBest": 110
 }
 }
 
@@ -127,10 +134,96 @@ Example Response:
 
 {
 "success": true,
-"data": {
-"weeklyMileage": [22, 24, 26, 28, 30, 32, 35, 38],
-"pace": 4.98,
-"trainingStructure": ["easy", "interval", "long", "tempo"]
+"message": "Data received successfully!",
+"plan": {
+"weeks_until": 3,
+"pace": "4:59",
+"weeks": [
+{
+"week": 1,
+"total_km": 32.4,
+"runs": [
+{
+"type": "easy",
+"distance": 5.8,
+"pace_per_run_type": "5:26"
+},
+{
+"type": "interval",
+"distance": 6.5,
+"pace_per_run_type": "4:44"
+},
+{
+"type": "long",
+"distance": 16.2,
+"pace_per_run_type": "5:20"
+},
+{
+"type": "recovery",
+"distance": 3.9,
+"pace_per_run_type": "5:35"
+}
+]
+},
+{
+"week": 2,
+"total_km": 36.3,
+"runs": [
+{
+"type": "easy",
+"distance": 6.5,
+"pace_per_run_type": "5:26"
+},
+{
+"type": "interval",
+"distance": 7.3,
+"pace_per_run_type": "4:44"
+},
+{
+"type": "long",
+"distance": 18.1,
+"pace_per_run_type": "5:20"
+},
+{
+"type": "recovery",
+"distance": 4.4,
+"pace_per_run_type": "5:35"
+}
+]
+},
+{
+"week": 3,
+"total_km": 18.1,
+"runs": [
+{
+"type": "easy",
+"distance": 3.3,
+"pace_per_run_type": "5:26"
+},
+{
+"type": "interval",
+"distance": 3.6,
+"pace_per_run_type": "4:44"
+},
+{
+"type": "long",
+"distance": 9.1,
+"pace_per_run_type": "5:20"
+},
+{
+"type": "recovery",
+"distance": 2.2,
+"pace_per_run_type": "5:35"
+}
+]
+}
+],
+"type_of_runs": [
+"easy",
+"interval",
+"long",
+"recovery"
+]
 }
 }
 
@@ -153,10 +246,6 @@ All logic is modularized in helper functions for clarity and easier maintenance.
 
 ## 🔮 Roadmap
 
-- Long run distance progression
-- Daily workout breakdown
-- Pace zones (easy, tempo, interval)
-- Adaptive plans based on missed sessions
 - Export training plans as PDF
 
 ---
@@ -170,4 +259,4 @@ It is not a substitute for professional coaching or medical advice.
 
 ## 👤 Author
 
-Ioannis Psychogyios
+Ioannis Psychogyios - Test Automation Engineer
