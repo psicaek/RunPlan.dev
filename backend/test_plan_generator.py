@@ -78,7 +78,7 @@ class TestCalculatePace:
 # --------------------------------------------------
 
 class TestCalculateWeeklyTypeOfRuns:
-
+    
     def test_2_days(self):
         assert calculate_weekly_type_of_runs("2 days") == ["easy", "long"]
 
@@ -113,6 +113,11 @@ class TestCalculateWeeklyTypeOfRuns:
     def test_invalid_input(self):
         assert calculate_weekly_type_of_runs("8 days") is None
 
+    def test_1_day(self):
+        assert calculate_weekly_type_of_runs("1 days") is None    
+
+    def test_0_day(self):
+        assert calculate_weekly_type_of_runs("0 days") is None  
 
 # --------------------------------------------------
 # calculate_weekly_mileage
@@ -218,7 +223,7 @@ class TestCalculateRunPerType:
         result = calculate_run_per_type(mileage, types, "3 days")
 
         week = result[0]
-        assert pytest.approx(sum(week.values()), abs=0.5) == 30
+        assert pytest.approx(sum(week.values()), abs=0) == 30
 
     def test_5_day_distribution_sum(self):
         mileage = [50]
@@ -226,7 +231,7 @@ class TestCalculateRunPerType:
         result = calculate_run_per_type(mileage, types, "5 days")
 
         week = result[0]
-        assert pytest.approx(sum(week.values()), abs=0.5) == 50
+        assert pytest.approx(sum(week.values()), abs=0) == 50
 
     def test_multiple_weeks(self):
         mileage = [30, 32, 28]
@@ -235,6 +240,35 @@ class TestCalculateRunPerType:
 
         assert len(result) == 3
 
+    def test_4_day_distribution_sum(self):
+        mileage = [50]
+        types = ["easy", "interval", "long", "recovery"]
+        result = calculate_run_per_type(mileage, types, "4 days")
+
+        week = result[0]
+        assert pytest.approx(sum(week.values()), abs=0) == 50   
+
+    def test_6_day_distribution_sum(self):
+        mileage = [50]  
+        weekly_type_of_runs = calculate_weekly_type_of_runs("6 days")
+        result = calculate_run_per_type(mileage, weekly_type_of_runs, "6 days")
+        
+        week = result[0]
+        total = sum(distance * weekly_type_of_runs.count(run_type)
+        for run_type, distance in week.items())
+
+        assert pytest.approx(total, abs=0.1) == 50
+
+    def test_7_day_distribution_sum(self):
+        mileage = [50]  
+        weekly_type_of_runs = calculate_weekly_type_of_runs("7 days")
+        result = calculate_run_per_type(mileage, weekly_type_of_runs, "7 days")
+        
+        week = result[0]
+        total = sum(distance * weekly_type_of_runs.count(run_type)
+        for run_type, distance in week.items())
+
+        assert pytest.approx(total, abs=0.1) == 50   
 # --------------------------------------------------
 # Integration sanity test
 # --------------------------------------------------
