@@ -299,9 +299,9 @@ def calculate_run_per_type(mileage_plan,type_of_runs,trainingdays):
                 if run_type == "easy":
                     week_runs[run_type] = round(week_mileage * 0.18, 1)
                 elif run_type == "interval":
-                    week_runs[run_type] = round(week_mileage * 0.12, 1)
+                    week_runs[run_type] = round(week_mileage * 0.14, 1)
                 elif run_type == "long":
-                    week_runs[run_type] = round(week_mileage * 0.5, 1)  
+                    week_runs[run_type] = round(week_mileage * 0.48, 1)  
                 elif run_type == "recovery":
                     week_runs[run_type] = round(week_mileage * 0.20, 1)
             runs_per_week.append(week_runs)
@@ -310,13 +310,13 @@ def calculate_run_per_type(mileage_plan,type_of_runs,trainingdays):
                 if run_type == "easy":
                     week_runs[run_type] = round(week_mileage * 0.14, 1)
                 elif run_type == "interval":
-                    week_runs[run_type] = round(week_mileage * 0.11, 1)
+                    week_runs[run_type] = round(week_mileage * 0.12, 1)
                 elif run_type == "long":
-                    week_runs[run_type] = round(week_mileage * 0.5, 1)  
+                    week_runs[run_type] = round(week_mileage * 0.48, 1)  
                 elif run_type == "tempo":
                     week_runs[run_type] = round(week_mileage * 0.11, 1)  
                 elif run_type == "recovery":
-                    week_runs[run_type] = round(week_mileage * 0.14, 1) 
+                    week_runs[run_type] = round(week_mileage * 0.15, 1) 
             runs_per_week.append(week_runs)
         elif trainingdays.lower() == "6 days":
             for run_type in type_of_runs:
