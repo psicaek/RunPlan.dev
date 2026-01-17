@@ -15,7 +15,7 @@
       "
     >
       <v-list>
-        <v-list-item prepend-avatar="src/assets/mainLogoRevert.svg">
+        <v-list-item prepend-avatar="/mainLogoRevert.svg">
           <template #title>
             <span style="font-size: larger; font-weight: bold; color: #1e293b"
               >Run Plan</span

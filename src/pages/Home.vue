@@ -20,7 +20,7 @@
         <v-col lg="7">
           <!-- Logo -->
           <v-img
-            src="src/assets/mainLogo.svg"
+            src="/mainLogo.svg"
             alt="Run Plan Logo"
             width="160"
             class="mx-auto mb-6"
