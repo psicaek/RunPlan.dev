@@ -4,7 +4,7 @@ import About from "../pages/About.vue";
 import AthletesProfile from "../pages/AthletesProfile.vue";
 import TrainingGoal from "../pages/TrainingGoal.vue";
 import Review from "../pages/Review.vue";
-import Info from "../pages/info.vue";
+import Info from "../pages/Info.vue";
 import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
 
 import Result from "../pages/Result.vue";
