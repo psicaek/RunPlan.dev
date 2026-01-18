@@ -1,7 +1,7 @@
 <template>
   <BaseCard></BaseCard>
   <!-- Hero Section -->
-  <v-container fluid class="fill-height">
+  <v-container fluid class="d-flex align-center justify-center home-container">
     <v-card
       variant="tonal"
       style="margin: auto"

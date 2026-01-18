@@ -19,6 +19,12 @@
   font-weight: bold;
 }
 
+.home-container {
+  height: 100vh;
+  padding: 0;
+  overflow: hidden;
+}
+
 .avantar {
   display: flex;
   justify-content: center;
@@ -79,12 +85,11 @@
   display: flex;
   margin-top: 10px;
 }
-.info-card{
+.info-card {
   display: flex !important;
   justify-content: center !important;
   margin-top: 25px !important;
   height: fit-content;
-
 }
 .info-card .v-card-title {
   font-size: x-large;
@@ -99,7 +104,7 @@
   justify-content: center;
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
-  text-wrap:initial;
+  text-wrap: initial;
 }
 .info-card .v-card-text {
   font-size: x-small;
@@ -107,7 +112,6 @@
   justify-content: center;
   display: flex;
   font-family: Arial, Helvetica, sans-serif;
-
 }
 /* ================================
    PRIMARY ACCENT — NEON GREEN
