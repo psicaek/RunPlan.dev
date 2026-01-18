@@ -81,7 +81,7 @@
       </v-card>
     </v-col>
 
-    <v-col class="text-center"  >
+    <v-col class="text-center">
       <v-card
         color="#bef264"
         variant="tonal"
@@ -106,7 +106,7 @@
     </v-col>
   </v-row>
   <v-row class="text-center" style="margin-bottom: 35px">
-    <v-col cols="12" md="6" class="pa-2"">
+    <v-col cols="12" md="6" class="pa-2">
       <v-card
         color="#bef264"
         variant="tonal"
