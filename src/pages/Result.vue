@@ -9,7 +9,7 @@
         color="#bef264"
         style="margin-top: 30px"
         width="500px"
-        min-height="140""
+        min-height="140"
         variant="tonal"
       >
         <template #title>

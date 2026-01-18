@@ -1,5 +1,5 @@
 <template>
-  <BaseCard></BaseCard>>
+  <BaseCard></BaseCard>
 
   <!-- Title & Subtitle -->
 
@@ -13,7 +13,7 @@
         rounded="xl"
         border="accent xl"
         width="500px"
-        min-height="140""
+        min-height="140"
       >
         <!-- TITLE -->
         <template #title>
@@ -22,10 +22,9 @@
 
         <!-- SUBTITLE -->
         <template #subtitle>
-          <div class="subtitle-wrapper text-wrap" style="color: #87ac55">
-          
+          <span class="subtitle-wrapper text-wrap" style="color: #87ac55">
             Tell us about your current running level and experience.
-          </div>
+          </span>
         </template>
       </v-card>
     </v-row>
