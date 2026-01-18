@@ -1,16 +1,5 @@
 <template>
-  <v-card class="rounded-0">
-    <!-- Title with icons -->
-    <span class="title-runplan text-h">
-      <v-icon size="40">mdi-run</v-icon>
-      <span>Run Plan Generator</span>
-      <v-icon size="40">mdi-run-fast</v-icon>
-    </span>
-    <!-- Subtitle under the title -->
-    <span class="title-runplan2">
-      Create your personalized running plan in minutes!
-    </span>
-  </v-card>
+  <BaseCard></BaseCard>>
 
   <v-container class="text-center">
     <v-row class="athlets-card-profile">
@@ -21,8 +10,8 @@
         variant="tonal"
         rounded="xl"
         border="accent xl"
-        width="700px"
-        height="125px"
+        width="500px"
+        min-height="140"
       >
         <!-- TITLE -->
         <template #title>
@@ -31,9 +20,9 @@
 
         <!-- SUBTITLE -->
         <template #subtitle>
-          <span style="color: #87ac55">
-            Set you goal race and training preferences
-          </span>
+          <div class="subtitle-wrapper text-wrap" style="color: #87ac55">
+            Set your goal race and training preferences
+          </div>
         </template>
       </v-card>
     </v-row>
@@ -228,6 +217,7 @@ import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { computed } from "vue";
 import "../assets/global.css";
+import BaseCard from "../components/BaseCard.vue";
 
 const store = useRunnerProfileStore();
 const { goal } = storeToRefs(store);

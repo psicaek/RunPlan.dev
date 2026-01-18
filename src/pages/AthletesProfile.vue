@@ -1,16 +1,5 @@
 <template>
-  <v-card class="rounded-0">
-    <!-- Title with icons -->
-    <span class="title-runplan text-h">
-      <v-icon size="40">mdi-run</v-icon>
-      <span>Run Plan Generator</span>
-      <v-icon size="40">mdi-run-fast</v-icon>
-    </span>
-    <!-- Subtitle under the title -->
-    <span class="title-runplan2">
-      Create your personalized running plan in minutes!
-    </span>
-  </v-card>
+  <BaseCard></BaseCard>>
 
   <!-- Title & Subtitle -->
 
@@ -23,8 +12,8 @@
         variant="tonal"
         rounded="xl"
         border="accent xl"
-        width="700px"
-        height="125px"
+        width="500px"
+        min-height="140""
       >
         <!-- TITLE -->
         <template #title>
@@ -33,9 +22,10 @@
 
         <!-- SUBTITLE -->
         <template #subtitle>
-          <span style="color: #87ac55">
+          <div class="subtitle-wrapper text-wrap" style="color: #87ac55">
+          
             Tell us about your current running level and experience.
-          </span>
+          </div>
         </template>
       </v-card>
     </v-row>
@@ -194,6 +184,7 @@ import { useRouter } from "vue-router";
 import { storeToRefs } from "pinia";
 import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
 import "../assets/global.css";
+import BaseCard from "../components/BaseCard.vue";
 
 // Pinia store
 const store = useRunnerProfileStore();
@@ -267,7 +258,7 @@ watch(
     if (weeklyDistanceInputRef.value?.validate) {
       weeklyDistanceInputRef.value.validate(true);
     }
-  }
+  },
 );
 
 // Navigation

@@ -49,7 +49,7 @@
 
         <v-list-item to="/about" style="color: #1e293b">
           <template #prepend>
-            <v-icon size="35">mdi-account</v-icon>
+            <v-icon size="32">mdi-account</v-icon>
           </template>
           <template #title>
             <span style="font-size: larger; font-weight: bold; color: #1e293b"

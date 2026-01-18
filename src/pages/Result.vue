@@ -8,15 +8,15 @@
         rounded="xl"
         color="#bef264"
         style="margin-top: 30px"
-        width="700px"
-        height="125px"
+        width="500px"
+        min-height="140""
         variant="tonal"
       >
         <template #title>
           <span style="font-weight: bolder"> Training Plan </span>
         </template>
         <template #subtitle>
-          <span style="color: #87ac55">
+          <span class="subtitle-wrapper text-wrap" style="color: #87ac55">
             Total Weeks {{ plan.weeks_until }} with type of Runs per Week:
             {{ plan.type_of_runs.join(", ") }}
           </span>

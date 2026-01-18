@@ -7,7 +7,7 @@
       <v-icon size="40">mdi-run-fast</v-icon>
     </span>
     <!-- Subtitle under the title -->
-    <span class="title-runplan2">
+    <span class="title-runplan2" style="text-align: center">
       Create your personalized running plan in minutes!
     </span>
   </v-card>

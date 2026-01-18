@@ -27,7 +27,7 @@
   </v-container>
 
   <v-row class="text-center">
-    <v-col class="info-card">
+    <v-col cols="12" md="6" class="pa-2">
       <v-card
         color="#bef264"
         variant="tonal"
@@ -57,7 +57,7 @@
       >
     </v-col>
 
-    <v-col class="info-card">
+    <v-col cols="12" md="6" class="pa-2">
       <v-card
         color="#bef264"
         variant="tonal"
@@ -81,7 +81,7 @@
       </v-card>
     </v-col>
 
-    <v-col class="info-card">
+    <v-col class="text-center"  >
       <v-card
         color="#bef264"
         variant="tonal"
@@ -106,7 +106,7 @@
     </v-col>
   </v-row>
   <v-row class="text-center" style="margin-bottom: 35px">
-    <v-col class="info-card">
+    <v-col cols="12" md="6" class="pa-2"">
       <v-card
         color="#bef264"
         variant="tonal"
@@ -131,7 +131,7 @@
       >
     </v-col>
 
-    <v-col class="info-card">
+    <v-col cols="12" md="6" class="pa-2">
       <v-card
         color="#bef264"
         variant="tonal"
@@ -187,7 +187,7 @@
   </v-container>
 
   <v-row class="text-center">
-    <v-col class="info-card">
+    <v-col cols="12" md="6" class="pa-2">
       <v-card
         color="#bef264"
         variant="tonal"
@@ -211,7 +211,7 @@
       >
     </v-col>
 
-    <v-col class="info-card">
+    <v-col cols="12" md="6" class="pa-2">
       <v-card
         color="#bef264"
         variant="tonal"
@@ -235,7 +235,7 @@
       </v-card>
     </v-col>
 
-    <v-col class="info-card">
+    <v-col class="text-center">
       <v-card
         color="#bef264"
         variant="tonal"
@@ -260,7 +260,7 @@
     </v-col>
   </v-row>
   <v-row class="text-center">
-    <v-col class="info-card">
+    <v-col cols="12" md="6" class="pa-2">
       <v-card
         color="#bef264"
         variant="tonal"
@@ -283,7 +283,7 @@
       >
     </v-col>
 
-    <v-col class="info-card">
+    <v-col cols="12" md="6" class="pa-2">
       <v-card
         color="#bef264"
         variant="tonal"
@@ -309,7 +309,6 @@
   </v-row>
 </template>
 <script setup lang="ts">
-import { Text } from "vue";
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
 </script>

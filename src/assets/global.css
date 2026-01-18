@@ -49,9 +49,9 @@
 
 .athlets-card .v-card-subtitle {
   display: flex;
-  font-size: medium;
+
   font-weight: bolder;
-  justify-content: center !important;
+  justify-content: center;
 }
 
 .athlets-card .v-avatar {
@@ -85,12 +85,7 @@
   display: flex;
   margin-top: 10px;
 }
-.info-card {
-  display: flex !important;
-  justify-content: center !important;
-  margin-top: 25px !important;
-  height: fit-content;
-}
+
 .info-card .v-card-title {
   font-size: x-large;
   color: #aad95c;

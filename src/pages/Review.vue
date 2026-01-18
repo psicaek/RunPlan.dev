@@ -1,7 +1,7 @@
 <template>
   <BaseCard></BaseCard>
 
-  <v-container width="800px" style="justify-content: space-between">
+  <v-container style="justify-content: space-between">
     <v-card class="result-card">
       <v-row style="display: flex" justify="center">
         <v-card
@@ -105,7 +105,6 @@
       </v-row>
       <v-col align="center" style="margin-top: 25px">
         <v-list-item class="review">
-          <
           <v-list-item-title>Race Distance:</v-list-item-title>
           <v-list-item-subtitle>{{
             goal.raceDistance || "-"

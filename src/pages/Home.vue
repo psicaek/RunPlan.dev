@@ -2,55 +2,44 @@
   <BaseCard></BaseCard>
   <!-- Hero Section -->
   <v-container fluid class="d-flex align-center justify-center home-container">
-    <v-card
-      variant="tonal"
-      style="margin: auto"
-      color="#bef264"
-      width="1000px"
-      height="480px"
-      rounded="pill"
-      border="accent xl"
-    >
-      <v-row
-        align="center"
-        justify="center"
-        class="text-center"
-        style="margin-top: 25px"
-      >
-        <v-col lg="7">
-          <!-- Logo -->
+    <v-row class="justify-center">
+      <v-col cols="12" sm="10" md="8" lg="6">
+        <v-card
+          variant="tonal"
+          color="#bef264"
+          class="pa-15 text-center hero-card"
+          rounded="pill"
+          border="accent xl"
+        >
           <v-img
             src="/mainLogo.svg"
             alt="Run Plan Logo"
-            width="160"
-            class="mx-auto mb-6"
+            max-width="120"
+            class="mx-auto mb-7"
           />
 
-          <!-- Title -->
-          <h1 class="text-h2 font-weight-bold mb-1">Run Plan Generator</h1>
-          <v-card-text style="color: #87ac55">
-            <!-- Subtitle -->
-            <h2 class="text-h6 font-weight-bold mb-1">
-              Answer a few simple questions and get a running plan tailored to
-              your goals.
-            </h2>
-          </v-card-text>
-          <!-- Button -->
+          <h1 class="hero-title mb-3">Run Plan Generator</h1>
+
+          <p class="hero-subtitle mb-4">
+            Answer a few simple questions and get a running plan tailored to
+            your goals.
+          </p>
+
           <v-btn
             color="#BEF264"
-            size="x-large"
+            size="large"
             rounded="xl"
             elevation="24"
             @click="$router.push('/athletsProfile')"
           >
             Get Started
-            <v-icon class="ml-2" color="bg-dark-900"
-              >mdi-arrow-right-box</v-icon
-            >
+            <v-icon class="ml-1" color="bg-dark-900">
+              mdi-arrow-right-box
+            </v-icon>
           </v-btn>
-        </v-col>
-      </v-row>
-    </v-card>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
