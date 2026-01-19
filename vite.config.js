@@ -1,7 +1,19 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
   plugins: [vue()],
-  base: './'
-})
+  base: "./",
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vue-vendor": ["vue"],
+          "vuetify-lib": ["vuetify"],
+          "vuetify-components": ["vuetify/components"],
+          "vuetify-directives": ["vuetify/directives"],
+        },
+      },
+    },
+  },
+});

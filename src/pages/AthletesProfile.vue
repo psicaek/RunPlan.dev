@@ -161,7 +161,8 @@
             elevation="16"
             @click="$router.back()"
           >
-            <v-icon size="20">mdi-arrow-left-box</v-icon>Back
+            <v-icon size="20">{{ icons.Left }}</v-icon
+            >Back
           </v-btn>
           <v-btn
             color="#bef264"
@@ -169,7 +170,7 @@
             rounded
             elevation="16"
             @click="goNext()"
-            >Next <v-icon size="20">mdi-arrow-right-box</v-icon></v-btn
+            >Next <v-icon size="20">{{ icons.Right }}</v-icon></v-btn
           >
         </div>
       </v-col>
@@ -184,12 +185,18 @@ import { storeToRefs } from "pinia";
 import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
+import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 
 // Pinia store
 const store = useRunnerProfileStore();
 const { profile } = storeToRefs(store);
 
 const router = useRouter();
+
+const icons = {
+  Left: mdiChevronLeft,
+  Right: mdiChevronRight,
+};
 
 // Refs
 const weeklyDistanceInputRef = ref();

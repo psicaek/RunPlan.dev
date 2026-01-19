@@ -69,7 +69,8 @@
         elevation="16"
         @click="$router.back()"
       >
-        <v-icon size="20">mdi-arrow-left-box</v-icon>Back
+        <v-icon size="20">{{ icons.Left }}</v-icon
+        >Back
       </v-btn>
       <v-btn
         color="#bef264"
@@ -78,7 +79,7 @@
         elevation="16"
         @click="printResult"
       >
-        <v-icon size="20">mdi-printer</v-icon> Print Plan
+        <v-icon size="20">{{ icons.Printer }}</v-icon> Print Plan
       </v-btn>
     </v-col>
 
@@ -264,6 +265,7 @@ import { storeToRefs } from "pinia";
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
 import { ref } from "vue";
+import { mdiChevronLeft, mdiPrinter } from "@mdi/js";
 
 const router = useRouter();
 const store = useRunnerProfileStore();
@@ -279,6 +281,11 @@ const Tempo = ref(null);
 
 const printResult = () => {
   window.print();
+};
+
+const icons = {
+  Left: mdiChevronLeft,
+  Printer: mdiPrinter,
 };
 
 function scrollToRun(type) {

@@ -2,9 +2,9 @@
   <v-card class="rounded-0">
     <!-- Title with icons -->
     <span class="title-runplan text-h">
-      <v-icon size="40">mdi-run</v-icon>
+      <v-icon size="40">{{ icons.Run }}</v-icon>
       <span>Run Plan Generator</span>
-      <v-icon size="40">mdi-run-fast</v-icon>
+      <v-icon size="40">{{ icons.Runfast }}</v-icon>
     </span>
     <!-- Subtitle under the title -->
     <span class="title-runplan2" style="text-align: center">
@@ -15,4 +15,10 @@
 
 <script setup lang="ts">
 import "../assets/global.css";
+import { mdiRun, mdiRunFast } from "@mdi/js";
+
+const icons = {
+  Run: mdiRun,
+  Runfast: mdiRunFast,
+};
 </script>

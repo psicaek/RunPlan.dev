@@ -196,7 +196,8 @@
             elevation="16"
             @click="$router.back()"
           >
-            <v-icon size="20">mdi-arrow-left-box</v-icon>Back
+            <v-icon size="20">{{ icons.Left }}</v-icon
+            >Back
           </v-btn>
           <v-btn
             color="#bef264"
@@ -204,7 +205,7 @@
             rounded
             elevation="16"
             @click="goNext()"
-            >Review <v-icon size="20">mdi-arrow-right-box</v-icon></v-btn
+            >Review <v-icon size="20">{{ icons.Right }}</v-icon></v-btn
           >
         </div>
       </v-col>
@@ -218,11 +219,17 @@ import { useRouter } from "vue-router";
 import { computed } from "vue";
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
+import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 
 const store = useRunnerProfileStore();
 const { goal } = storeToRefs(store);
 const { profile } = storeToRefs(store);
 const router = useRouter();
+
+const icons = {
+  Left: mdiChevronLeft,
+  Right: mdiChevronRight,
+};
 
 const maxTrainingDaysPerLevel: Record<string, [number, number]> = {
   Beginner: [2, 3],

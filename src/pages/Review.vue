@@ -145,7 +145,8 @@
         elevation="16"
         @click="$router.back()"
       >
-        <v-icon size="20">mdi-arrow-left-box</v-icon>Back
+        <v-icon size="20">{{ icons.Left }}</v-icon
+        >Back
       </v-btn>
       <v-btn
         color="#bef264"
@@ -154,7 +155,7 @@
         elevation="16"
         @click="generatePlan()"
         >Review
-        <v-icon size="20" color="#001f3f">mdi-arrow-right-box</v-icon></v-btn
+        <v-icon size="20" color="#001f3f">{{ icons.Right }}</v-icon></v-btn
       >
     </div>
   </v-container>
@@ -167,10 +168,16 @@ import { useRouter } from "vue-router";
 import { computed } from "vue";
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
+import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
 
 const store = useRunnerProfileStore();
 const router = useRouter();
 const { profile, goal } = storeToRefs(store);
+
+const icons = {
+  Left: mdiChevronLeft,
+  Right: mdiChevronRight,
+};
 
 const formattedTargetDate = computed(() => {
   if (!goal.value.targetDate) return "-";

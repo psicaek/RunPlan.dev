@@ -23,7 +23,7 @@
           </template>
           <template v-slot:append style="font-size: large">
             <v-btn
-              icon="mdi-chevron-left"
+              icon="icons.chevronLeft"
               variant="text"
               style="color: #1e293b; font-size: xx-large"
               :rail="rail"
@@ -38,7 +38,7 @@
       <v-list density="compact" nav>
         <v-list-item to="/" style="color: #1e293b">
           <template #prepend>
-            <v-icon size="32">mdi-home-city</v-icon>
+            <v-icon size="32">{{ icons.homeCity }}</v-icon>
           </template>
           <template #title>
             <span style="font-size: larger; font-weight: bold; color: #1e293b"
@@ -49,7 +49,7 @@
 
         <v-list-item to="/about" style="color: #1e293b">
           <template #prepend>
-            <v-icon size="32">mdi-account</v-icon>
+            <v-icon size="32">{{ icons.account }}</v-icon>
           </template>
           <template #title>
             <span style="font-size: larger; font-weight: bold; color: #1e293b"
@@ -60,7 +60,7 @@
 
         <v-list-item to="/" style="color: #1e293b">
           <template #prepend>
-            <v-icon size="32">mdi-run-fast</v-icon>
+            <v-icon size="32">{{ icons.runFast }}</v-icon>
           </template>
           <template #title>
             <span style="font-size: larger; font-weight: bold; color: #1e293b"
@@ -70,7 +70,7 @@
         </v-list-item>
         <v-list-item to="/Info" style="color: #1e293b">
           <template #prepend>
-            <v-icon size="32">mdi-information</v-icon>
+            <v-icon size="32">{{ icons.information }}</v-icon>
           </template>
           <template #title>
             <span style="font-size: larger; font-weight: bold; color: #1e293b"
@@ -88,7 +88,13 @@
 
 <script>
 import { ref } from "vue";
-
+import {
+  mdiChevronLeft,
+  mdiHomeCity,
+  mdiAccount,
+  mdiRunFast,
+  mdiInformation,
+} from "@mdi/js";
 import router from "./router";
 
 function home() {
@@ -101,9 +107,18 @@ export default {
     const drawer = ref(true);
     const rail = ref(true);
 
+    const icons = {
+      chevronLeft: mdiChevronLeft,
+      homeCity: mdiHomeCity,
+      account: mdiAccount,
+      runFast: mdiRunFast,
+      information: mdiInformation,
+    };
+
     return {
       drawer,
       rail,
+      icons,
     };
   },
 };
