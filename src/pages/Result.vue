@@ -23,56 +23,65 @@
         </template>
       </v-card>
     </v-row>
-
-    <v-container>
-      <v-expansion-panels
-        color="#bef264"
-        variant="popout"
-        style="margin-top: 20px"
-      >
-        <v-expansion-panel
-          v-for="week in plan.weeks"
-          :key="week.week"
-          style="background-color: #87ac55"
-          elevation="24"
-        >
-          <v-expansion-panel-title style="margin-top: 10px">
-            Week {{ week.week }} — Weekly Total KM {{ week.total_km }} km
-          </v-expansion-panel-title>
-
-          <v-expansion-panel-text style="background-color: #1e293b">
-            <v-list density="compact" style="background-color: #87ac55">
-              <v-list-item v-for="(run, index) in week.runs" :key="index">
-                <v-list-item-title
-                  class="cursor-pointer text-#87ac55 hover:underline"
-                  @click="scrollToRun(run.type)"
-                >
-                  {{ run.type.toUpperCase() }} —
-                  {{ getDistance(run.distance) }} km
-                </v-list-item-title>
-
-                <v-list-item-subtitle>
-                  Pace: {{ run.pace_per_run_type }} /km
-                </v-list-item-subtitle>
-              </v-list-item>
-            </v-list>
-          </v-expansion-panel-text>
-        </v-expansion-panel>
-      </v-expansion-panels>
-    </v-container>
-    <v-row justify="center" class="mt-10">
-      <v-col cols="auto">
-        <v-btn
+    <div id="print-area">
+      <v-container>
+        <v-expansion-panels
           color="#bef264"
-          class="mt-5"
-          rounded
-          elevation="16"
-          @click="$router.back()"
+          variant="popout"
+          style="margin-top: 20px"
         >
-          <v-icon size="20">mdi-arrow-left-box</v-icon>Back
-        </v-btn>
-      </v-col>
-    </v-row>
+          <v-expansion-panel
+            v-for="week in plan.weeks"
+            :key="week.week"
+            style="background-color: #87ac55"
+            elevation="24"
+          >
+            <v-expansion-panel-title style="margin-top: 10px">
+              Week {{ week.week }} — Weekly Total KM {{ week.total_km }} km
+            </v-expansion-panel-title>
+
+            <v-expansion-panel-text style="background-color: #1e293b">
+              <v-list density="compact" style="background-color: #87ac55">
+                <v-list-item v-for="(run, index) in week.runs" :key="index">
+                  <v-list-item-title
+                    class="cursor-pointer text-#87ac55 hover:underline"
+                    @click="scrollToRun(run.type)"
+                  >
+                    {{ run.type.toUpperCase() }} —
+                    {{ getDistance(run.distance) }} km
+                  </v-list-item-title>
+
+                  <v-list-item-subtitle>
+                    Pace: {{ run.pace_per_run_type }} /km
+                  </v-list-item-subtitle>
+                </v-list-item>
+              </v-list>
+            </v-expansion-panel-text>
+          </v-expansion-panel>
+        </v-expansion-panels>
+      </v-container>
+    </div>
+    <v-col class="d-flex justify-space-between">
+      <v-btn
+        color="#bef264"
+        class="mt-5"
+        rounded
+        elevation="16"
+        @click="$router.back()"
+      >
+        <v-icon size="20">mdi-arrow-left-box</v-icon>Back
+      </v-btn>
+      <v-btn
+        color="#bef264"
+        class="mt-5"
+        rounded
+        elevation="16"
+        @click="printResult"
+      >
+        <v-icon size="20">mdi-printer</v-icon> Print Plan
+      </v-btn>
+    </v-col>
+
     <v-row class="text-center">
       <v-col class="info-card">
         <v-card
@@ -268,6 +277,10 @@ const Recovery = ref(null);
 const Interval = ref(null);
 const Tempo = ref(null);
 
+const printResult = () => {
+  window.print();
+};
+
 function scrollToRun(type) {
   const map = {
     easy: Easyrun,
@@ -293,3 +306,22 @@ function goBack() {
   router.back();
 }
 </script>
+<style>
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #print-area,
+  #print-area * {
+    visibility: visible;
+  }
+
+  #print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+</style>
