@@ -56,7 +56,7 @@
                   </v-list-item-title>
 
                   <v-list-item-subtitle>
-                    Pace: {{ run.pace_per_run_type }} /km
+                    Pace: {{ run.pace_per_run_type }} /km or Heartrate: {{ run.bpm }}
                   </v-list-item-subtitle>
                 </v-list-item>
               </v-list>
