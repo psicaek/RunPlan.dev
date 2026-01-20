@@ -25,21 +25,20 @@
     </v-row>
     <div id="print-area">
       <v-container>
-       
         <v-expansion-panels
-        v-model="openPanels"
+          v-model="openPanels"
           color="#bef264"
           variant="popout"
           style="margin-top: 20px"
           multiple
         >
           <v-expansion-panel
-        v-for="(week, index) in plan?.weeks || []"
-        :key="week.week"
-        :value="index"
-        style="background-color: #87ac55"
-        elevation="24"
-      >
+            v-for="(week, index) in plan?.weeks || []"
+            :key="week.week"
+            :value="index"
+            style="background-color: #87ac55"
+            elevation="24"
+          >
             <v-expansion-panel-title style="margin-top: 10px">
               Week {{ week.week }} — Weekly Total KM {{ week.total_km }} km
             </v-expansion-panel-title>
@@ -56,34 +55,35 @@
                   </v-list-item-title>
 
                   <v-list-item-subtitle>
-                    Pace: {{ run.pace_per_run_type }} /km or Heartrate: {{ run.bpm }}
+                    Pace: {{ run.pace_per_run_type }} /km or Heartrate:
+                    {{ run.bpm }}
                   </v-list-item-subtitle>
                 </v-list-item>
               </v-list>
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
-        <v-col >
-      <v-btn
-        color="#bef264"
-        class="mt-5"
-        rounded
-        elevation="16"
-        @click="expandAll"
-      >
-        <v-icon size="20">{{ icons.expandAll}}</v-icon
-        >Expand All
-      </v-btn>
-      <v-btn
-        color="#bef264"
-        class="mt-5"
-        rounded
-        elevation="16"
-        @click="collapseAll"
-      >
-        <v-icon size="20">{{ icons.collapseAll }}</v-icon> Collapse All
-      </v-btn>
-    </v-col>
+        <v-col>
+          <v-btn
+            color="#bef264"
+            class="mt-5"
+            rounded
+            elevation="16"
+            @click="expandAll"
+          >
+            <v-icon size="20">{{ icons.expandAll }}</v-icon
+            >Expand All
+          </v-btn>
+          <v-btn
+            color="#bef264"
+            class="mt-5"
+            rounded
+            elevation="16"
+            @click="collapseAll"
+          >
+            <v-icon size="20">{{ icons.collapseAll }}</v-icon> Collapse All
+          </v-btn>
+        </v-col>
       </v-container>
     </div>
     <v-col class="d-flex justify-space-between">
@@ -123,8 +123,8 @@
               class="pl-4 list-disc text-sm"
               style="font-size: medium; text-align: start"
             >
-              <li>Pace: ~60–75% of 10k pace (conversational pace)</li>
-              <li>Heart Rate: 60–75% of max HR</li>
+              <li>Pace: ~72–78% of 10k pace (conversational pace)</li>
+              <li>Heart Rate: 69–75% of max HR</li>
               <li>Effort: Very easy, can talk comfortably</li>
               <li>Purpose: Aerobic base, recovery, injury prevention</li>
               <li>
@@ -158,7 +158,7 @@
               style="font-size: medium; text-align: start"
             >
               <li>Pace: Faster than 10k pace</li>
-              <li>Heart Rate: 90–100% of max HR</li>
+              <li>Heart Rate: 91–95% of max HR</li>
               <li>High-intensity bursts, very hard</li>
               <li>Purpose: Improve VO2 max, speed, cardiovascular capacity</li>
               <li>
@@ -193,9 +193,9 @@
               style="font-size: medium; text-align: start"
             >
               <li>
-                Pace: Slightly slower than easy pace (~65–80% of 10k pace)
+                Pace: Slightly slower than easy pace (~70–80% of 10k pace)
               </li>
-              <li>Heart Rate: 65–80% of max HR</li>
+              <li>Heart Rate: 70–78% of max HR</li>
               <li>Effort: Steady, moderate</li>
               <li>Purpose: Improve endurance, mental toughness, stamina</li>
               <li>
@@ -226,8 +226,8 @@
               class="pl-4 list-disc text-sm"
               style="font-size: medium; text-align: start"
             >
-              <li>Pace: ~60–75% of 10k pace (conversational pace)</li>
-              <li>Heart Rate: 60–75% of max HR</li>
+              <li>Pace: ~65–72% of 10k pace (conversational pace)</li>
+              <li>Heart Rate: 60–68% of max HR</li>
               <li>Effort: Very easy, can talk comfortably</li>
               <li>Purpose: Aerobic base, recovery, injury prevention</li>
               <li>
@@ -258,8 +258,8 @@
               class="pl-4 list-disc text-sm"
               style="font-size: medium; text-align: start"
             >
-              <li>Pace: ~10–20 seconds slower than 10k pace</li>
-              <li>Heart Rate: 80–90% of max HR</li>
+              <li>Pace: ~88–92% of 10k pace</li>
+              <li>Heart Rate: 86–90% of max HR</li>
               <li>Effort: “Comfortably hard”, challenging but sustainable</li>
               <li>
                 Purpose: Raise lactate threshold, improve race pace stamina
@@ -290,7 +290,12 @@ import { storeToRefs } from "pinia";
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
 import { ref } from "vue";
-import { mdiChevronLeft, mdiPrinter ,mdiExpandAll, mdiCollapseAll} from "@mdi/js";
+import {
+  mdiChevronLeft,
+  mdiPrinter,
+  mdiExpandAll,
+  mdiCollapseAll,
+} from "@mdi/js";
 
 const router = useRouter();
 const store = useRunnerProfileStore();
@@ -311,21 +316,21 @@ const printResult = () => {
 const icons = {
   Left: mdiChevronLeft,
   Printer: mdiPrinter,
-  expandAll:mdiExpandAll,
-  collapseAll:mdiCollapseAll
+  expandAll: mdiExpandAll,
+  collapseAll: mdiCollapseAll,
 };
 
-const openPanels = ref([])
+const openPanels = ref([]);
 
 const expandAll = () => {
-  console.log('Expanding, weeks count:', plan.value.weeks.length)
-  openPanels.value = plan.value.weeks.map((_, index) => index)
-  console.log('Open panels:', openPanels.value)
-}
+  console.log("Expanding, weeks count:", plan.value.weeks.length);
+  openPanels.value = plan.value.weeks.map((_, index) => index);
+  console.log("Open panels:", openPanels.value);
+};
 
 const collapseAll = () => {
-  openPanels.value = []
-}
+  openPanels.value = [];
+};
 
 function scrollToRun(type) {
   const map = {

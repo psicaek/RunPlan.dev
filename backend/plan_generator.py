@@ -41,15 +41,15 @@ def generate_plan_logic(profile, goal):
             
             bpm = ""
             if run_type == "long":
-                bpm = "75–88% of max HR"
+                bpm = "70–78% of max HR"
             elif run_type =="recovery":
-                bpm = "60–70% of max HR"
+                bpm = "60–68% of max HR"
             elif run_type == "easy":
-                bpm = "60–75% of max HR"  
+                bpm = "69–75% of max HR"  
             elif run_type == "interval":
-                bpm = "85–95% of max HR"  
+                bpm = "91–95% of max HR"  
             elif run_type == "tempo":
-                bpm = "80-90% of max HR"    
+                bpm = "86–90% of max HR"    
 
             runs.append({
                 "type": run_type,
