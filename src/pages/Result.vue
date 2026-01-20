@@ -25,17 +25,21 @@
     </v-row>
     <div id="print-area">
       <v-container>
+       
         <v-expansion-panels
+        v-model="openPanels"
           color="#bef264"
           variant="popout"
           style="margin-top: 20px"
+          multiple
         >
           <v-expansion-panel
-            v-for="week in plan.weeks"
-            :key="week.week"
-            style="background-color: #87ac55"
-            elevation="24"
-          >
+        v-for="(week, index) in plan?.weeks || []"
+        :key="week.week"
+        :value="index"
+        style="background-color: #87ac55"
+        elevation="24"
+      >
             <v-expansion-panel-title style="margin-top: 10px">
               Week {{ week.week }} — Weekly Total KM {{ week.total_km }} km
             </v-expansion-panel-title>
@@ -59,6 +63,27 @@
             </v-expansion-panel-text>
           </v-expansion-panel>
         </v-expansion-panels>
+        <v-col >
+      <v-btn
+        color="#bef264"
+        class="mt-5"
+        rounded
+        elevation="16"
+        @click="expandAll"
+      >
+        <v-icon size="20">{{ icons.expandAll}}</v-icon
+        >Expand All
+      </v-btn>
+      <v-btn
+        color="#bef264"
+        class="mt-5"
+        rounded
+        elevation="16"
+        @click="collapseAll"
+      >
+        <v-icon size="20">{{ icons.collapseAll }}</v-icon> Collapse All
+      </v-btn>
+    </v-col>
       </v-container>
     </div>
     <v-col class="d-flex justify-space-between">
@@ -265,7 +290,7 @@ import { storeToRefs } from "pinia";
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
 import { ref } from "vue";
-import { mdiChevronLeft, mdiPrinter } from "@mdi/js";
+import { mdiChevronLeft, mdiPrinter ,mdiExpandAll, mdiCollapseAll} from "@mdi/js";
 
 const router = useRouter();
 const store = useRunnerProfileStore();
@@ -286,7 +311,21 @@ const printResult = () => {
 const icons = {
   Left: mdiChevronLeft,
   Printer: mdiPrinter,
+  expandAll:mdiExpandAll,
+  collapseAll:mdiCollapseAll
 };
+
+const openPanels = ref([])
+
+const expandAll = () => {
+  console.log('Expanding, weeks count:', plan.value.weeks.length)
+  openPanels.value = plan.value.weeks.map((_, index) => index)
+  console.log('Open panels:', openPanels.value)
+}
+
+const collapseAll = () => {
+  openPanels.value = []
+}
 
 function scrollToRun(type) {
   const map = {
