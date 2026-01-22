@@ -37,7 +37,7 @@ def generate_plan_logic(profile, goal):
         
         for run_type in weekly_type_of_runs:
             
-            run_pace_seconds = calculate_run_pace(pace,run_type,experienceLevel,age)\
+            run_pace_seconds = calculate_run_pace(pace,run_type,age,race_distance)
             
             bpm = ""
             if run_type == "long":
@@ -78,7 +78,7 @@ def format_pace(seconds):
     return f"{m}:{s:02d}"    
 
 
-def calculate_run_pace(base_pace, run_type, experience_level, age):
+def calculate_run_pace(base_pace, run_type, age, race_distance):
     """
     base_pace: seconds/km (goal race pace)
     run_type: easy, recovery, long, tempo, interval
@@ -86,7 +86,7 @@ def calculate_run_pace(base_pace, run_type, experience_level, age):
     age: runner's age in years
     """
 
-   
+    pace = 0
 
     # ----------------------
     # 1️⃣ Age factor
@@ -100,24 +100,64 @@ def calculate_run_pace(base_pace, run_type, experience_level, age):
         # Older runners slower, 0.3% per year, capped at +10%
         age_factor = min((age - 35) * 0.003, 0.10)
 
+
+
+    if race_distance == "5K":
+        if run_type.lower() == "recovery": 
+            pace = base_pace* 1.41
+        elif run_type.lower() == "easy": 
+            pace = base_pace* 1.34
+        elif run_type.lower() == "long": 
+            pace = base_pace* 1.28
+        elif run_type.lower() == "tempo": 
+            pace = base_pace* 1.11
+        elif run_type.lower() == "interval": 
+            pace = base_pace* 0.95
+    elif race_distance == "10K":
+        if run_type.lower() == "recovery": 
+            pace = base_pace* 1.41
+        elif run_type.lower() == "easy": 
+            pace = base_pace* 1.34
+        elif run_type.lower() == "long": 
+            pace = base_pace* 1.28
+        elif run_type.lower() == "tempo": 
+            pace = base_pace* 1.11
+        elif run_type.lower() == "interval": 
+            pace = base_pace* 0.95 
+    elif race_distance == "Half Marathon":  
+        if run_type.lower() == "recovery": 
+            pace = base_pace* 1.30
+        elif run_type.lower() == "easy": 
+            pace = base_pace* 1.19
+        elif run_type.lower() == "long": 
+            pace = base_pace* 1.12
+        elif run_type.lower() == "tempo": 
+            pace = base_pace* 1.05
+        elif run_type.lower() == "interval": 
+            pace = base_pace* 0.95 
+    elif race_distance == "Marathon": 
+        if run_type.lower() == "recovery": 
+            pace = base_pace* 1.16
+        elif run_type.lower() == "easy": 
+            pace = base_pace* 1.08
+        elif run_type.lower() == "long": 
+            pace = base_pace* 1.03
+        elif run_type.lower() == "tempo": 
+            pace = base_pace* 0.94
+        elif run_type.lower() == "interval": 
+            pace = base_pace* 0.845                                  
+
     # ----------------------
     # 2️⃣ Run type offsets
     # ----------------------
-    OFFSET_FACTORS = {
-        "beginner": {"recovery": 0.18, "easy": 0.14, "long": 0.10, "tempo": -0.01, "interval": -0.03},
-        "intermediate": {"recovery": 0.14, "easy": 0.11, "long": 0.08, "tempo": -0.02, "interval": -0.04},
-        "advanced": {"recovery": 0.12, "easy": 0.09, "long": 0.07, "tempo": -0.04, "interval": -0.05},
-        "expert": {"recovery": 0.10, "easy": 0.07, "long": 0.06, "tempo": -0.03, "interval": -0.05},
-        "elite": {"recovery": 0.10, "easy": 0.05, "long": 0.04, "tempo": -0.03, "interval": -0.04}
-    }
+    
 
-    offsets = OFFSET_FACTORS.get(experience_level.lower(), OFFSET_FACTORS["advanced"])
-    factor = offsets.get(run_type.lower(), 0)
 
     # ----------------------
     # 3️⃣ Calculate adjusted pace
     # ----------------------
-    adjusted_pace = base_pace * (1 + factor + age_factor)
+    adjusted_pace = pace * (1  + age_factor)
+    
     return int(round(adjusted_pace))
     
    
