@@ -41,9 +41,11 @@
       </v-col>
     </v-row>
   </v-container>
+  <DonateCard></DonateCard>
 </template>
 
 <script setup>
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
+import DonateCard from "../components/DonateCard.vue";
 </script>

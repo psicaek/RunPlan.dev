@@ -283,7 +283,7 @@
       >
     </v-col>
 
-    <v-col cols="12" md="6" class="pa-2">
+    <v-col cols="12" md="6" class="pa-2" style="margin-bottom: 40px">
       <v-card
         color="#bef264"
         variant="tonal"
@@ -307,8 +307,10 @@
       >
     </v-col>
   </v-row>
+  <DonateCard></DonateCard>
 </template>
 <script setup lang="ts">
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
+import DonateCard from "../components/DonateCard.vue";
 </script>

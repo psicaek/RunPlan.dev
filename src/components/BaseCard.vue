@@ -3,11 +3,24 @@
     <!-- Title with icons -->
     <span class="title-runplan text-h">
       <v-icon size="40">{{ icons.Run }}</v-icon>
-      <span>Run Plan Generator</span>
+      <span
+        style="
+          font-family: &quot;Montserrat&quot;, sans-serif;
+          font-weight: 700;
+        "
+        >Run Plan Generator</span
+      >
       <v-icon size="40">{{ icons.Runfast }}</v-icon>
     </span>
     <!-- Subtitle under the title -->
-    <span class="title-runplan2" style="text-align: center">
+    <span
+      class="title-runplan2"
+      style="
+        text-align: center;
+        font-family: &quot;Montserrat&quot;, sans-serif;
+        font-weight: 500;
+      "
+    >
       Create your personalized running plan in minutes!
     </span>
   </v-card>

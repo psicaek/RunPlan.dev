@@ -53,16 +53,24 @@
     </v-row>
 
     <v-row justify="center" class="mt-8">
-      <v-btn color="#bef264" rounded elevation="12" @click="$router.back()">
+      <v-btn
+        color="#bef264"
+        rounded
+        elevation="12"
+        style="margin-bottom: 20px"
+        @click="$router.back()"
+      >
         <v-icon start>mdi-arrow-left</v-icon>
         Back
       </v-btn>
     </v-row>
   </v-container>
+  <DonateCard></DonateCard>
 </template>
 
 <script setup lang="ts">
 import BaseCard from "../components/BaseCard.vue";
+import DonateCard from "../components/DonateCard.vue";
 
 interface Section {
   title: string;
@@ -110,19 +118,19 @@ const sections: Section[] = [
     supportLinks: [
       {
         label: "Buy Me a Coffee",
-        url: "https://www.buymeacoffee.com/yourusername",
+        url: "https://buymeacoffee.com/psicaek",
         icon: "mdi-coffee",
         color: "#bef264", // brand yellow/brown
       },
       {
         label: "Patreon",
-        url: "https://www.patreon.com/yourusername",
+        url: "https://www.patreon.com/c/psicaek",
         icon: "mdi-patreon",
         color: "#bef264", // Patreon orange-red
       },
       {
         label: "PayPal",
-        url: "https://www.paypal.com/donate?hosted_button_id=YOURID",
+        url: "https://paypal.me/ioannisPsychogyios",
         icon: "mdi-paypal",
         color: "#bef264",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/PayPal_Logo_Icon_2014.svg/960px-PayPal_Logo_Icon_2014.svg.png",
