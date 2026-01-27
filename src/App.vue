@@ -23,9 +23,9 @@
           </template>
           <template v-slot:append style="font-size: large">
             <v-btn
-              icon="icons.chevronLeft"
+              :icon="icons.chevronLeft"
               variant="text"
-              style="color: #1e293b; font-size: xx-large"
+              style="color: #1e293b; font-size: x-large"
               :rail="rail"
               @click.stop="rail = !rail"
             ></v-btn>

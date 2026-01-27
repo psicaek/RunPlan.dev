@@ -60,7 +60,7 @@
         style="margin-bottom: 20px"
         @click="$router.back()"
       >
-        <v-icon start>mdi-arrow-left</v-icon>
+        <v-icon start>{{ mdiChevronLeft }}</v-icon>
         Back
       </v-btn>
     </v-row>
@@ -71,7 +71,7 @@
 <script setup lang="ts">
 import BaseCard from "../components/BaseCard.vue";
 import DonateCard from "../components/DonateCard.vue";
-
+import { mdiChevronLeft } from "@mdi/js";
 interface Section {
   title: string;
   subtitle: string;

@@ -283,7 +283,7 @@
       >
     </v-col>
 
-    <v-col cols="12" md="6" class="pa-2" style="margin-bottom: 40px">
+    <v-col cols="12" md="6" class="pa-2" style="margin-bottom: 20px">
       <v-card
         color="#bef264"
         variant="tonal"
@@ -307,10 +307,23 @@
       >
     </v-col>
   </v-row>
-  <DonateCard></DonateCard>
+  <v-row justify="center" class="mt-8">
+    <v-btn
+      color="#bef264"
+      rounded
+      elevation="12"
+      style="margin-bottom: 20px"
+      @click="$router.back()"
+    >
+      <v-icon start>{{ mdiChevronLeft }}</v-icon>
+      Back
+    </v-btn>
+  </v-row>
+  <DonateCard style="margin-top: 20px"></DonateCard>
 </template>
 <script setup lang="ts">
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
 import DonateCard from "../components/DonateCard.vue";
+import { mdiChevronLeft } from "@mdi/js";
 </script>
