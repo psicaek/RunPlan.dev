@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def generate_plan_logic(profile, goal):
@@ -31,9 +31,15 @@ def generate_plan_logic(profile, goal):
     
 
     weeks = []
+    start_date = datetime.now()
 
     for i in range(weeks_until):
         runs = []
+        
+        week_start = start_date + timedelta(weeks=i)
+        week_end = week_start + timedelta(days=6)
+        # Format as "dd/mm - dd/mm"
+        week_str = f"{week_start.day}/{week_start.month} - {week_end.day}/{week_end.month}"
         
         for run_type in weekly_type_of_runs:
             
@@ -58,7 +64,7 @@ def generate_plan_logic(profile, goal):
                 "bpm":bpm
                 }),
         weeks.append({
-            "week": i + 1,
+            "week": week_str,
             "total_km": round(weekly_mileage[i], 1),
             "runs": runs,
             

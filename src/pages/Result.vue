@@ -40,7 +40,8 @@
             elevation="24"
           >
             <v-expansion-panel-title style="margin-top: 10px">
-              Week {{ week.week }} — Weekly Total KM {{ week.total_km }} km
+              Week {{ index + 1 }} :{{ week.week }} — Weekly Total KM
+              {{ week.total_km }} km
             </v-expansion-panel-title>
 
             <v-expansion-panel-text style="background-color: #1e293b">
