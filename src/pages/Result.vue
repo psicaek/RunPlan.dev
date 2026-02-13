@@ -297,6 +297,18 @@ import {
   mdiExpandAll,
   mdiCollapseAll,
 } from "@mdi/js";
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'RunPlan – Your Personalized Training Plan',
+  meta: [
+    {
+      name: 'description',
+      content: 'View your AI-generated running plan with weekly distances, pace guidance, and structured workouts.'
+    },
+    { name: 'robots', content: 'index, follow' }
+  ]
+})
 
 const router = useRouter();
 const store = useRunnerProfileStore();

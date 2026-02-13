@@ -48,4 +48,15 @@
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
 import DonateCard from "../components/DonateCard.vue";
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'RunPlan – AI Running Plan Generator',
+  meta: [
+    {
+      name: 'description',
+      content: 'Create personalized running plans powered by AI. Train smarter for your next race.'
+    }
+  ]
+})
 </script>

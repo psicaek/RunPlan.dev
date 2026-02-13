@@ -220,6 +220,18 @@ import { computed } from "vue";
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
 import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'RunPlan – Set Your Training Goals',
+  meta: [
+    {
+      name: 'description',
+      content: 'Define your running goals, distances, and schedule to get a plan tailored to your objectives.'
+    },
+    { name: 'robots', content: 'index, follow' }
+  ]
+})
 
 const store = useRunnerProfileStore();
 const { goal } = storeToRefs(store);

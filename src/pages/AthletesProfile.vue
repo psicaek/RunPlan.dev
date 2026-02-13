@@ -186,6 +186,18 @@ import { useRunnerProfileStore } from "../stores/useRunnerProfileStore";
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
 import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'RunPlan – Create Your Athlete Profile',
+  meta: [
+    {
+      name: 'description',
+      content: 'Enter your running experience, fitness level, and preferences to generate a personalized training plan.'
+    },
+    { name: 'robots', content: 'index, follow' }
+  ]
+})
 
 // Pinia store
 const store = useRunnerProfileStore();

@@ -326,4 +326,16 @@ import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
 import DonateCard from "../components/DonateCard.vue";
 import { mdiChevronLeft } from "@mdi/js";
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'RunPlan – How It Works',
+  meta: [
+    {
+      name: 'description',
+      content: 'Learn how RunPlan generates AI-powered personalized running plans tailored to your fitness level.'
+    },
+    { name: 'robots', content: 'index, follow' }
+  ]
+})
 </script>

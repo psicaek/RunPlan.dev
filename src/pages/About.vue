@@ -72,6 +72,19 @@
 import BaseCard from "../components/BaseCard.vue";
 import DonateCard from "../components/DonateCard.vue";
 import { mdiChevronLeft } from "@mdi/js";
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'About RunPlan – AI Running App',
+  meta: [
+    {
+      name: 'description',
+      content: 'About the team and mission behind RunPlan – helping runners train smarter with AI-generated plans.'
+    },
+    { name: 'robots', content: 'index, follow' }
+  ]
+})
+
 interface Section {
   title: string;
   subtitle: string;

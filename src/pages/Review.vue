@@ -169,6 +169,18 @@ import { computed } from "vue";
 import "../assets/global.css";
 import BaseCard from "../components/BaseCard.vue";
 import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'RunPlan – User Reviews & Feedback',
+  meta: [
+    {
+      name: 'description',
+      content: 'Read what runners are saying about RunPlan. User feedback and reviews for AI-generated training plans.'
+    },
+    { name: 'robots', content: 'index, follow' }
+  ]
+})
 
 const store = useRunnerProfileStore();
 const router = useRouter();

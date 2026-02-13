@@ -1,8 +1,24 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import prerender from "vite-plugin-prerender";
+import path from "path";
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    prerender({
+      staticDir: path.resolve(__dirname, "dist"),
+      routes: [
+        "/", 
+        "/info", 
+        "/about", 
+        "/athletsprofile", 
+        "/traininggoal", 
+        "/result",
+        "/review"  // ✅ added review page
+      ],
+    }),
+  ],
   base: "./",
   build: {
     rollupOptions: {
